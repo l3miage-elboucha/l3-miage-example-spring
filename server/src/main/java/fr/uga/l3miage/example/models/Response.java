@@ -2,10 +2,7 @@ package fr.uga.l3miage.example.models;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -16,7 +13,7 @@ import javax.persistence.ManyToOne;
 public class Response {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id ;
     private String label ;
 

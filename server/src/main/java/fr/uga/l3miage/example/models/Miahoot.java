@@ -14,14 +14,13 @@ import java.util.List;
 @NoArgsConstructor
 public class Miahoot {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id ;
 
     @ManyToOne
     private Teacher concepteur ;
 
     @ManyToOne
-    @Column(nullable = true )
     private Teacher presentateur ;
 
     @OneToMany(mappedBy = "participantMiahoot")

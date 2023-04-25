@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Question {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id ;
     private String label ;
 
