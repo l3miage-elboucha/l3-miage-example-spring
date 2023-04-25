@@ -15,6 +15,8 @@ import lombok.Data;
  */
 @Data
 @Builder
+
+
 @Schema(description = "correspond au DTO de l'entité Test")
 public class Test {
     @Schema(description = "correspond à la description de l'objet",example = "cet objet est un test")
