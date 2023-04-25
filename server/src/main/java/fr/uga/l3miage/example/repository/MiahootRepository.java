@@ -7,11 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface MiahootRepository extends JpaRepository<Miahoot,Long> {
 
-    Miahoot findMiahootById(final Long miahootId) ;
+    Optional<Miahoot> findMiahootById(final Long miahootId) ;
     List<Miahoot> findMiahootByConcepteur(Teacher concepteur);
     void deleteMiahootById(final Long  miahootId);
 
