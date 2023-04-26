@@ -10,10 +10,10 @@ import java.util.List;
 @Builder
 public class MiahootDTO {
 
-    private Long id ;
-    private TeacherDTO concepteur ;
-    private TeacherDTO presentateur ;
-    private List<ParticipantDTO> participants ;
-    private String nom ;
-    private List<QuestionDTO> questions  ;
+     Long id ;
+     TeacherDTO concepteur ;
+     TeacherDTO presentateur ;
+     List<ParticipantDTO> participants ;
+     String nom ;
+     List<QuestionDTO> questions  ;
 }
