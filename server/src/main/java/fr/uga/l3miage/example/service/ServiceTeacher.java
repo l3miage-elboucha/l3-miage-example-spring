@@ -21,7 +21,7 @@ public class ServiceTeacher {
 
     public TeacherDTO getTeacher(final Teacher teacher) {
         try {
-            return teacherMapper.entitytoDTO(teacherComponent.getTeacher(teacher.getUserName()));
+            return teacherMapper.entityToDTO(teacherComponent.getTeacher(teacher.getUserName()));
         } catch (TeacherEntityNotFoundException ex) {
             throw new TeacherEntityNotFoundException("Impossible de charger l'entité.",teacher.getUserName());
         }
@@ -29,14 +29,14 @@ public class ServiceTeacher {
 
     public TeacherDTO getTeacher(final String userName) {
         try {
-            return teacherMapper.entitytoDTO(teacherComponent.getTeacher(userName));
+            return teacherMapper.entityToDTO(teacherComponent.getTeacher(userName));
         } catch (TeacherEntityNotFoundException ex) {
             throw new TeacherEntityNotFoundException("Impossible de charger l'entité.",userName);
         }
     }
 
     public void createTeacher(final TeacherDTO teacherDTO) throws TeacherAlreadyExistsException {
-        Teacher newTeacher = teacherMapper.dTOtoEntity(teacherDTO);
+        Teacher newTeacher = teacherMapper.dtoToEntity(teacherDTO);
         try {
             teacherComponent.createTeacher(newTeacher);
         } catch (TeacherAlreadyExistsException ex) {

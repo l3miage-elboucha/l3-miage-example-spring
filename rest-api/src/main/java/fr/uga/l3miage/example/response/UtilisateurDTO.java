@@ -1,10 +1,10 @@
 package fr.uga.l3miage.example.response;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@Builder
-public class UtilisateurDTO {
+@Getter
+@Setter
+public abstract class UtilisateurDTO {
     String userName;
 }
