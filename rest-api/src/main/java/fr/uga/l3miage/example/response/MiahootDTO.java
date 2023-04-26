@@ -11,9 +11,9 @@ import java.util.List;
 public class MiahootDTO {
 
     private Long id ;
-    private Teacher concepteur ;
-    private Teacher presentateur ;
-    private List<Participant> participants ;
+    private TeacherDTO concepteur ;
+    private TeacherDTO presentateur ;
+    private List<ParticipantDTO> participants ;
     private String nom ;
-    private List<Question> questions  ;
+    private List<QuestionDTO> questions  ;
 }

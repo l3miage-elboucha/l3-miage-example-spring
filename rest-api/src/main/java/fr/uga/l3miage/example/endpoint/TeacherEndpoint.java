@@ -1,6 +1,6 @@
 package fr.uga.l3miage.example.endpoint;
 
-import fr.uga.l3miage.example.dto.TeacherDTO;
+import fr.uga.l3miage.example.response.TeacherDTO;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

@@ -1,6 +1,5 @@
 package fr.uga.l3miage.example.response;
 
-import fr.uga.l3miage.example.models.Question;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,5 +9,5 @@ public class ResponseDTO {
      Long id ;
      String label ;
      boolean estValide ;
-     Question question;
+     QuestionDTO question;
 }
