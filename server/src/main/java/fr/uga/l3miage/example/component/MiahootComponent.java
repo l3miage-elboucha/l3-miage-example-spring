@@ -32,7 +32,7 @@ public class MiahootComponent {
     }
 
     //Delete Miahoot if it exists
-    public void deleteMiahoot(final Miahoot miahoot) throws MultipleEntityHaveSameDescriptionException, TestEntityNotFoundException {
+    public void deleteMiahoot(final Miahoot miahoot) throws MiahootEntityNotFoundException {
         Long deleted = miahootRepository.deleteMiahootById(miahoot.getId());
         if (deleted == 0)
             throw new MiahootEntityNotFoundException("Aucune entité n'a été trouvée avec cette ID ", miahoot.getId());
