@@ -1,4 +1,4 @@
-package fr.uga.l3miage.example.dto;
+package fr.uga.l3miage.example.response;
 
 import fr.uga.l3miage.example.models.Question;
 import lombok.Builder;

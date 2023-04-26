@@ -1,4 +1,4 @@
-package fr.uga.l3miage.example.dto;
+package fr.uga.l3miage.example.response;
 
 import lombok.Builder;
 import lombok.Data;

@@ -2,14 +2,11 @@ package fr.uga.l3miage.example.service;
 
 
 import fr.uga.l3miage.example.component.MiahootComponent;
-import fr.uga.l3miage.example.dto.MiahootDTO;
-import fr.uga.l3miage.example.exception.rest.*;
+import fr.uga.l3miage.example.response.MiahootDTO;
 import fr.uga.l3miage.example.exception.technical.*;
 import fr.uga.l3miage.example.mapper.MiahootMapper;
 import fr.uga.l3miage.example.models.Miahoot;
-import fr.uga.l3miage.example.models.TestEntity;
 import fr.uga.l3miage.example.repository.MiahootRepository;
-import fr.uga.l3miage.example.request.CreateTestRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
@@ -25,7 +22,7 @@ public class ServiceMiahoot {
     private final MiahootComponent miahootComponent ;
 
 
- public MiahootDTO getMiahoot(final Miahoot miahoot) {
+    public MiahootDTO getMiahoot(final Miahoot miahoot) {
         try {
             return miahootMapper.entitytoDto(miahootComponent.getMiahoot(miahoot.getId()));
         } catch (MiahootEntityNotFoundException ex) {
@@ -33,12 +30,12 @@ public class ServiceMiahoot {
         }
     }
 
-    public void createMiahoot(final MiahootDTO miahootdto) throws MiahootAlreadyExistException {
+    public void createMiahoot(final MiahootDTO miahootdto) throws MiahootAlreadyExistsException {
         Miahoot newMiahoot = miahootMapper.dtoToEntity(miahootdto);
         try {
             miahootComponent.createMiahoot(newMiahoot);
-            }catch (MiahootAlreadyExistException ex) {
-                throw new MiahootAlreadyExistException(ERROR_DETECTED,newMiahoot.getId(),ex);
+            }catch (MiahootAlreadyExistsException ex) {
+                throw new MiahootAlreadyExistsException(ERROR_DETECTED,newMiahoot.getId(),ex);
         }
     }
 

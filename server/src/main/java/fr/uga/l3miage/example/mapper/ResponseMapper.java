@@ -1,8 +1,7 @@
 package fr.uga.l3miage.example.mapper;
 
 
-import fr.uga.l3miage.example.dto.ResponseDTO;
-import fr.uga.l3miage.example.models.Question;
+import fr.uga.l3miage.example.response.ResponseDTO;
 import fr.uga.l3miage.example.models.Response;
 import org.mapstruct.Mapper;
 

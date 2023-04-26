@@ -22,10 +22,10 @@ public class MiahootComponent {
     }
 
     //Create a new Miahoot if it doesn't exist
-    public void createMiahoot(final Miahoot miahoot) throws MiahootAlreadyExistException {
+    public void createMiahoot(final Miahoot miahoot) throws MiahootAlreadyExistsException {
 
         if (miahootRepository.findMiahootById(miahoot.getId()).isPresent()) {
-            throw new MiahootAlreadyExistException("Miahoot existe déjà en BD. ", miahoot.getId());
+            throw new MiahootAlreadyExistsException("Miahoot existe déjà en BD. ", miahoot.getId());
         } else {
             miahootRepository.save(miahoot);
         }
