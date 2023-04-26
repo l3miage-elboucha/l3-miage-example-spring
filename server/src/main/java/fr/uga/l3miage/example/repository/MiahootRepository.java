@@ -14,7 +14,7 @@ public interface MiahootRepository extends JpaRepository<Miahoot,Long> {
 
     Optional<Miahoot> findMiahootById(final Long miahootId) ;
     List<Miahoot> findMiahootByConcepteur(Teacher concepteur);
-    void deleteMiahootById(final Long  miahootId);
+    Long deleteMiahootById(final Long  miahootId);
 
 
 

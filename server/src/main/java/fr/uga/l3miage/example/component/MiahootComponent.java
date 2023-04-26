@@ -1,13 +1,10 @@
 package fr.uga.l3miage.example.component;
 
 
-import fr.uga.l3miage.example.exception.technical.TestEntityNotFoundException;
+import fr.uga.l3miage.example.exception.technical.*;
 import fr.uga.l3miage.example.mapper.MiahootMapper;
-import fr.uga.l3miage.example.mapper.TestMapper;
 import fr.uga.l3miage.example.models.Miahoot;
-import fr.uga.l3miage.example.models.TestEntity;
 import fr.uga.l3miage.example.repository.MiahootRepository;
-import fr.uga.l3miage.example.repository.TestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -18,8 +15,33 @@ public class MiahootComponent {
     private final MiahootMapper miahootMapper;
 
 
-   /* public Miahoot getMiahoot(final Long miahootId) throws TestEntityNotFoundException {
+    //Return Miahoot if it exists
+    public Miahoot getMiahoot(final Long miahootId) throws MiahootEntityNotFoundException {
         return miahootRepository.findMiahootById(miahootId)
-                .orElseThrow(() -> new TestEntityNotFoundException(String.format("Aucune entité n'a été trouvée pour la description [%s]", miahootId), miahootId));*/
+                .orElseThrow(() -> new MiahootEntityNotFoundException("Aucune entité n'a été trouvée avec cette ID ", miahootId));
     }
+
+    //Create a new Miahoot if it doesn't exist
+    public void createMiahoot(final Miahoot miahoot) throws MiahootAlreadyExistException {
+
+        if (miahootRepository.findMiahootById(miahoot.getId()).isPresent()) {
+            throw new MiahootAlreadyExistException("Miahoot existe déjà en BD. ", miahoot.getId());
+        } else {
+            miahootRepository.save(miahoot);
+        }
+    }
+
+    //Delete Miahoot if it exists
+    public void deleteMiahoot(final Miahoot miahoot) throws MultipleEntityHaveSameDescriptionException, TestEntityNotFoundException {
+        Long deleted = miahootRepository.deleteMiahootById(miahoot.getId());
+        if (deleted == 0)
+            throw new MiahootEntityNotFoundException("Aucune entité n'a été trouvée avec cette ID ", miahoot.getId());
+
+    }
+
+
+}
+
+
+
 
