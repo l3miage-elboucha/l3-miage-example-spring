@@ -27,14 +27,14 @@ public class ServiceMiahoot {
 
  public MiahootDTO getMiahoot(final Miahoot miahoot) {
         try {
-            return miahootMapper.EntitytoDto(miahootComponent.getMiahoot(miahoot.getId()));
+            return miahootMapper.entitytoDto(miahootComponent.getMiahoot(miahoot.getId()));
         } catch (MiahootEntityNotFoundException ex) {
             throw new MiahootEntityNotFoundException("Impossible de charger l'entité.",miahoot.getId());
         }
     }
 
     public void createMiahoot(final MiahootDTO miahootdto) throws MiahootAlreadyExistException {
-        Miahoot newMiahoot = miahootMapper.DtoToEntity(miahootdto);
+        Miahoot newMiahoot = miahootMapper.dtoToEntity(miahootdto);
         try {
             miahootComponent.createMiahoot(newMiahoot);
             }catch (MiahootAlreadyExistException ex) {

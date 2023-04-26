@@ -9,6 +9,6 @@ import org.mapstruct.Mapper;
 
 @Mapper(uses = Miahoot.class)
 public interface MiahootMapper {
-    MiahootDTO EntitytoDto(Miahoot miahoot);
-    Miahoot DtoToEntity(MiahootDTO miahoot) ;
+    MiahootDTO entitytoDto(Miahoot miahoot);
+    Miahoot dtoToEntity(MiahootDTO miahoot) ;
 }
