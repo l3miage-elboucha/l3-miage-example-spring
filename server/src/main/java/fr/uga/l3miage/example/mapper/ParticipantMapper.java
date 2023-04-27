@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(uses = Participant.class)
 public interface ParticipantMapper {
-    ParticipantDTO dtoToEntity(Participant participant);
-    Participant entityToDTO(ParticipantDTO participantDTO);
+    Participant dtoToEntity(ParticipantDTO participantDTO);
+    ParticipantDTO entityToDTO(Participant participant);
 
 }
