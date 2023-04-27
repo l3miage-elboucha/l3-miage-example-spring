@@ -25,17 +25,17 @@ public class ServiceTeacher {
 
     public TeacherDTO getTeacher(final Teacher teacher) {
         try {
-            return teacherMapper.entityToDTO(teacherComponent.getTeacher(teacher.getNom()));
+            return teacherMapper.entityToDTO(teacherComponent.getTeacher(teacher.getId()));
         } catch (TeacherEntityNotFoundException ex) {
-            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.",teacher.getNom());
+            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.",teacher.getId());
         }
     }
 
-    public TeacherDTO getTeacher(final String userName) {
+    public TeacherDTO getTeacher(final Long id) {
         try {
-            return teacherMapper.entityToDTO(teacherComponent.getTeacher(userName));
+            return teacherMapper.entityToDTO(teacherComponent.getTeacher(id));
         } catch (TeacherEntityNotFoundException ex) {
-            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.",userName);
+            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.",id);
         }
     }
 
@@ -48,19 +48,19 @@ public class ServiceTeacher {
         }
     }
 
-    public void updateTeacherUsername(final String username, final String newUsername) throws TeacherEntityNotFoundException {
+    public void updateTeacherUsername(final Long id, final String newUsername) throws TeacherEntityNotFoundException {
         try {
-            teacherComponent.updateTeacherUsername(username, newUsername);
+            teacherComponent.updateTeacherUsername(id, newUsername);
         } catch (TeacherEntityNotFoundException ex) {
-            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.", username);
+            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.", id);
         }
     }
 
-    public void deleteTeacher(final String username) throws TeacherEntityNotFoundException {
+    public void deleteTeacher(final Long id) throws TeacherEntityNotFoundException {
         try {
-            teacherComponent.deleteTeacher(username);
+            teacherComponent.deleteTeacher(id);
         } catch (TeacherEntityNotFoundException ex) {
-            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.", username);
+            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.", id);
         }
     }
 

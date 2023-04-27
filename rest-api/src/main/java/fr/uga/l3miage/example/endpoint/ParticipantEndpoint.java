@@ -27,14 +27,14 @@ import javax.validation.Valid;
 public interface ParticipantEndpoint {
 
 
-    @GetMapping("{userName}")
+    @GetMapping("{id}")
     @Operation(description = "Récupérer participantDTO qui a pour username celui passé en paramètre")
     @ApiResponse(responseCode = "200", description = "Renvoie le DTO de l'entité test demandée",
             content = @Content(schema = @Schema(implementation = Test.class),mediaType = MediaType.APPLICATION_JSON_VALUE))
     @ApiResponse(responseCode = "404", description = "Renvoie une erreur 404 si l'entité n'est pas trouvée",
             content = @Content(schema = @Schema(implementation = TestNotFoundErrorResponse.class),mediaType = MediaType.APPLICATION_JSON_VALUE))
     @ResponseStatus(HttpStatus.OK)
-    ParticipantDTO getParticipant(@PathVariable String description);
+    ParticipantDTO getParticipant(@PathVariable Long id);
 
 
     @PostMapping
@@ -43,13 +43,13 @@ public interface ParticipantEndpoint {
     @ResponseStatus(HttpStatus.CREATED)
     void createParticipant(@Valid @RequestBody CreateParticipantRequest request);
 
-    @DeleteMapping("{username}")
+    @DeleteMapping("{id}")
     @Operation(description = "Suppression d'un participant en bd")
     @ApiResponse(responseCode = "200", description = "si isInError est à false alors 'Hello word' est renvoyé")
     @ApiResponse(responseCode = "418", description = "Renvoie une erreur 418 si l'entité n'a pu être supprimée",
             content = @Content(schema = @Schema(implementation = TestEntityNotDeletedErrorResponse.class),mediaType = MediaType.APPLICATION_JSON_VALUE))
     @ResponseStatus(HttpStatus.OK)
-    void deleteParticipant(@PathVariable String username);
+    void deleteParticipant(@PathVariable Long id);
 
 
 }

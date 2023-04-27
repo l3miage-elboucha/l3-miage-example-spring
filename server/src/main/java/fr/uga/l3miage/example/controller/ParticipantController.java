@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class ParticipantController implements ParticipantEndpoint{
     private final ParticipantService participantService;
-
-    public ParticipantDTO getParticipant(String username){return participantService.getParticipant(username);
+    @Override
+    public ParticipantDTO getParticipant(Long id){return participantService.getParticipant(id);
     }
-
+    @Override
     public void createParticipant(CreateParticipantRequest request){ participantService.createParticipant(request);}
-
-    public void deleteParticipant(String username){participantService.deleteParticipant(username);}
+    @Override
+    public void deleteParticipant(Long  id){participantService.deleteParticipant(id);}
 
 
 

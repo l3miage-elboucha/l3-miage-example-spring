@@ -24,11 +24,11 @@ public class ParticipantService {
     private final ParticipantMapper participantMapper;
     private final ParticipantComponent participantComponent ;
 
-    public ParticipantDTO getParticipant(final String username) {
+    public ParticipantDTO getParticipant(final Long id) {
         try {
-            return participantMapper.entityToDTO(participantComponent.getParticipant(username));
+            return participantMapper.entityToDTO(participantComponent.getParticipant(id));
         } catch (MiahootEntityNotFoundException ex) {
-            throw new ParticipantEntityNotFoundException("Impossible de charger l'entité."+username);
+            throw new ParticipantEntityNotFoundException("Impossible de charger l'entité."+id);
         }
     }
 
@@ -43,11 +43,11 @@ public class ParticipantService {
 
     @SneakyThrows
     @Transactional
-    public void deleteParticipant(final String username) throws ParticipantEntityNotFoundException {
-        if (username != null || username != "") {
-            participantComponent.deleteParticipant(username);
+    public void deleteParticipant(final Long id) throws ParticipantEntityNotFoundException {
+        if (id != null) {
+            participantComponent.deleteParticipant(id) ;
         }else {
-            throw  new ParticipantEntityNotFoundException("ce "+ username+" ne correspond a aucun participant existant");
+            throw  new ParticipantEntityNotFoundException("ce "+ id+" ne correspond a aucun participant existant");
         }
 
     }
