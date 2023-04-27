@@ -23,7 +23,7 @@ import javax.validation.Valid;
 @Tag(name = "Participant tag")
 @CrossOrigin
 @RestController
-@RequestMapping("participant/")
+@RequestMapping("api/participant/")
 public interface ParticipantEndpoint {
 
 

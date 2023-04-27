@@ -21,7 +21,7 @@ import javax.validation.Valid;
 @Tag(name = "Teacher tag")
 @CrossOrigin
 @RestController
-@RequestMapping("teacher/")
+@RequestMapping("api/teacher/")
 public interface TeacherEndpoint {
 
     @GetMapping("{id}")

@@ -16,7 +16,7 @@ import javax.validation.Valid;
 @Tag(name = "Miahoot tag")
 @CrossOrigin
 @RestController
-@RequestMapping("miahoot/")
+@RequestMapping("api/miahoot/")
 public interface MiahootEndpoint {
 
     /* Ici on définit un endpoint en mode <b>GET</b> qui nous renvoie un Miahoot */
