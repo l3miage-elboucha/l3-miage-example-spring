@@ -2,15 +2,16 @@ package fr.uga.l3miage.example.service;
 
 
 import fr.uga.l3miage.example.component.MiahootComponent;
-import fr.uga.l3miage.example.exception.technical.*;
+import fr.uga.l3miage.example.exception.technical.MiahootAlreadyExistsException;
+import fr.uga.l3miage.example.exception.technical.MiahootEntityNotFoundException;
 import fr.uga.l3miage.example.mapper.MiahootMapper;
 import fr.uga.l3miage.example.models.Miahoot;
 import fr.uga.l3miage.example.repository.MiahootRepository;
 import fr.uga.l3miage.example.request.CreatMiahootRequest;
+import fr.uga.l3miage.example.response.MiahootDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
-import fr.uga.l3miage.example.response.MiahootDTO;
 
 import javax.transaction.Transactional;
 
@@ -23,11 +24,11 @@ public class ServiceMiahoot {
     private final MiahootComponent miahootComponent ;
 
 
- public MiahootDTO getMiahoot(final Miahoot miahoot) {
+ public MiahootDTO getMiahootById(final Long id) throws MiahootEntityNotFoundException {
         try {
-            return miahootMapper.entitytoDto(miahootComponent.getMiahoot(miahoot.getId()));
+            return miahootMapper.entitytoDto(miahootComponent.getMiahoot(id));
         } catch (MiahootEntityNotFoundException ex) {
-            throw new MiahootEntityNotFoundException("Impossible de charger l'entité.",miahoot.getId());
+            throw new MiahootEntityNotFoundException("Impossible de charger l'entité.", id);
         }
     }
 
@@ -42,12 +43,21 @@ public class ServiceMiahoot {
 
     @SneakyThrows
     @Transactional
-    public void deleteMiahoot(Miahoot miahoot) throws MiahootEntityNotFoundException {
-        if (miahoot != null) {
-            miahootComponent.deleteMiahoot(miahoot);
-        }else {
-            throw  new MiahootEntityNotFoundException("Miahoot n'existe pas dèja", miahoot.getId());
+    public void deleteMiahootById(Long miahootId) throws MiahootEntityNotFoundException {
+        try {
+            miahootComponent.deleteMiahootById(miahootId);
+        } catch (MiahootEntityNotFoundException ex) {
+            throw new MiahootEntityNotFoundException("Impossible de supprimer l'entité.", miahootId);
         }
+    }
 
+    @SneakyThrows
+    @Transactional
+    public void updateMiahootById(Long miahootId, MiahootDTO miahootDTO) throws MiahootEntityNotFoundException {
+        try {
+            miahootComponent.updateMiahootById(miahootId, miahootDTO);
+        } catch (MiahootEntityNotFoundException ex) {
+            throw new MiahootEntityNotFoundException("Impossible de mettre à jour l'entité.", miahootId);
+        }
     }
 }

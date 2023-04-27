@@ -5,6 +5,7 @@ import fr.uga.l3miage.example.exception.technical.*;
 import fr.uga.l3miage.example.mapper.MiahootMapper;
 import fr.uga.l3miage.example.models.Miahoot;
 import fr.uga.l3miage.example.repository.MiahootRepository;
+import fr.uga.l3miage.example.response.MiahootDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -32,13 +33,21 @@ public class MiahootComponent {
     }
 
     //Delete Miahoot if it exists
-    public void deleteMiahoot(final Miahoot miahoot) throws MiahootEntityNotFoundException {
-        Long deleted = miahootRepository.deleteMiahootById(miahoot.getId());
+    public void deleteMiahootById(final Long miahootId) throws MiahootEntityNotFoundException {
+        Long deleted = miahootRepository.deleteMiahootById(miahootId);
         if (deleted == 0)
-            throw new MiahootEntityNotFoundException("Aucune entité n'a été trouvée avec cette ID ", miahoot.getId());
+            throw new MiahootEntityNotFoundException("Aucune entité n'a été trouvée avec cette ID ", miahootId);
 
     }
 
+    //Update Miahoot if it exists
+    public void updateMiahootById(final Long miahootId, final MiahootDTO miahootDTO) throws MiahootEntityNotFoundException {
+        if (miahootRepository.findMiahootById(miahootId).isPresent()) {
+            miahootRepository.save(miahootMapper.dtoToEntity(miahootDTO));
+        } else {
+            throw new MiahootEntityNotFoundException("Aucune entité n'a été trouvée avec cette ID ", miahootId);
+        }
+    }
 
 }
 

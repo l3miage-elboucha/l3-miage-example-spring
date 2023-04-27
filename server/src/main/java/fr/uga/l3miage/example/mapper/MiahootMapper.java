@@ -10,4 +10,5 @@ import org.mapstruct.Mapper;
 public interface MiahootMapper {
     MiahootDTO entitytoDto(Miahoot miahoot);
     Miahoot dtoToEntity(CreatMiahootRequest request);
+    Miahoot dtoToEntity(MiahootDTO miahootDTO);
 }

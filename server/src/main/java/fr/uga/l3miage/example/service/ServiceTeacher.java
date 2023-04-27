@@ -1,6 +1,9 @@
 package fr.uga.l3miage.example.service;
 
-import fr.uga.l3miage.example.component.TeacherComponent;
+import fr.uga.l3miage.example.component
+
+
+        .TeacherComponent;
 import fr.uga.l3miage.example.response.TeacherDTO;
 import fr.uga.l3miage.example.exception.technical.TeacherEntityNotFoundException;
 import fr.uga.l3miage.example.exception.technical.TeacherAlreadyExistsException;
