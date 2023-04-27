@@ -1,3 +1,4 @@
+/*
 package fr.uga.l3miage.example.exception.technical;
 
 import fr.uga.l3miage.example.error.ErrorCode;
@@ -28,3 +29,4 @@ public class TeacherEntityNotFoundException extends RuntimeException {
     }
 
 }
+*/

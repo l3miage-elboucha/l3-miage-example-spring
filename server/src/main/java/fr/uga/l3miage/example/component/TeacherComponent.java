@@ -1,3 +1,4 @@
+/*
 package fr.uga.l3miage.example.component;
 
 import fr.uga.l3miage.example.exception.technical.TeacherAlreadyExistsException;
@@ -44,3 +45,4 @@ public class TeacherComponent {
     }
 
 }
+*/
