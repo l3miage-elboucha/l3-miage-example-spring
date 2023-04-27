@@ -2,6 +2,7 @@ package fr.uga.l3miage.example.service;
 
 
 import fr.uga.l3miage.example.component.ParticipantComponent;
+import fr.uga.l3miage.example.request.CreateParticipantRequest;
 import fr.uga.l3miage.example.response.ParticipantDTO;
 import fr.uga.l3miage.example.exception.technical.MiahootEntityNotFoundException;
 import fr.uga.l3miage.example.exception.technical.ParticipantAlreadyExistException;
@@ -23,31 +24,30 @@ public class ParticipantService {
     private final ParticipantMapper participantMapper;
     private final ParticipantComponent participantComponent ;
 
-    public ParticipantDTO getParticipant(final Participant participant) {
+    public ParticipantDTO getParticipant(final String username) {
         try {
-            return participantMapper.entityToDTO(participantComponent.getParticipant(participant.getUserName()));
+            return participantMapper.entityToDTO(participantComponent.getParticipant(username));
         } catch (MiahootEntityNotFoundException ex) {
-            throw new ParticipantEntityNotFoundException("Impossible de charger l'entité."+participant.getUserName());
+            throw new ParticipantEntityNotFoundException("Impossible de charger l'entité."+username);
         }
     }
 
-    public void createParticipant(final ParticipantDTO participantDTO) throws ParticipantAlreadyExistException {
-        Participant newParticipant = participantMapper.dtoToEntity(participantDTO);
-        String participantUsername = participantMapper.dtoToEntity(participantDTO).getUserName();
+    public void createParticipant(final CreateParticipantRequest request) throws ParticipantAlreadyExistException {
+        Participant newParticipant = participantMapper.dtoToEntity(request);
         try {
             participantComponent.createParticipant(newParticipant);
         }catch (ParticipantAlreadyExistException ex) {
-            throw new ParticipantAlreadyExistException("le participant"+participantUsername +" existe deja");
+            throw new ParticipantAlreadyExistException("le participant"+newParticipant.getUserName() +" existe deja");
         }
     }
 
     @SneakyThrows
     @Transactional
-    public void deleteParticipant(Participant participant) throws ParticipantEntityNotFoundException {
-        if (participant != null) {
-            participantComponent.deleteParticipant(participant);
+    public void deleteParticipant(final String username) throws ParticipantEntityNotFoundException {
+        if (username != null || username != "") {
+            participantComponent.deleteParticipant(username);
         }else {
-            throw  new ParticipantEntityNotFoundException("le participant "+ participant.getUserName()+"n'existe pas");
+            throw  new ParticipantEntityNotFoundException("ce "+ username+" ne correspond a aucun participant existant");
         }
 
     }

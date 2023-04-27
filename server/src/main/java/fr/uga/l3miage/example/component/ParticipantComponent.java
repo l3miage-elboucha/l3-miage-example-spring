@@ -29,10 +29,10 @@ public class ParticipantComponent {
             participantRepository.save(participant);
         }
     }
-    public void deleteParticipant(final Participant participant) throws ParticipantEntityNotFoundException {
-        Long deleted = participantRepository.deleteParticipantByUserName(participant.getUserName());
+    public void deleteParticipant(final String username) throws ParticipantEntityNotFoundException {
+        Long deleted = participantRepository.deleteParticipantByUserName(username);
         if (deleted == 0)
-            throw new ParticipantEntityNotFoundException("Aucune particpant ne possede"+ participant.getUserName()+ "comme username");
+            throw new ParticipantEntityNotFoundException("Aucune particpant ne possede"+ username+ "comme username");
 
     }
 }
