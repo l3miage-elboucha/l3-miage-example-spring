@@ -1,17 +1,19 @@
 package fr.uga.l3miage.example.response;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
+import javax.validation.constraints.Null;
 import java.util.List;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
-@Builder
-public class TeacherDTO extends UtilisateurDTO  {
-
-    List<MiahootDTO> createdMiahoots ;
-    List<MiahootDTO> presentedMiahoots ;
+@SuperBuilder
+@Getter
+@Setter
+public class TeacherDTO {
+@Null
+     List<MiahootDTO> createdMiahoots ;
+@Null
+     List<MiahootDTO> presentedMiahoots ;
 
 }

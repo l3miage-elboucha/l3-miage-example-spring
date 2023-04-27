@@ -5,7 +5,7 @@ import fr.uga.l3miage.example.response.ResponseDTO;
 import fr.uga.l3miage.example.models.Response;
 import org.mapstruct.Mapper;
 
-@Mapper(uses = Response.class)
+@Mapper(componentModel = "spring")
 public interface ResponseMapper {
 
     Response  dtoToEntity(ResponseDTO responseDTO);

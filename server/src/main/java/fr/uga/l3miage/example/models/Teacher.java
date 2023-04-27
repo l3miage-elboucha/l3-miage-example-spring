@@ -15,6 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Teacher extends Utilisateur {
 
     @OneToMany(mappedBy = "concepteur")

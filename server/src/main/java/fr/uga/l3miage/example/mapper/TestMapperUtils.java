@@ -1,6 +1,10 @@
 package fr.uga.l3miage.example.mapper;
 
+import fr.uga.l3miage.example.models.Miahoot;
+import fr.uga.l3miage.example.models.Teacher;
+import fr.uga.l3miage.example.request.CreateTeacherRequest;
 import fr.uga.l3miage.example.request.CreateTestRequest;
+import fr.uga.l3miage.example.response.MiahootDTO;
 import lombok.RequiredArgsConstructor;
 import org.mapstruct.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -10,6 +14,8 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Correspond à l'utilitaire pour mapper des champs avec des traitements spéciaux
@@ -22,6 +28,18 @@ import java.lang.annotation.Target;
 @Component
 @RequiredArgsConstructor
 public class TestMapperUtils {
+
+@listMiahootToListMiahootDTO
+  List<Miahoot> listMiahootToListMiahootDTO(final List<MiahootDTO> miahootDTOList){
+        MiahootMapper miahootMapper = null;
+        List<Miahoot> list = new ArrayList<Miahoot>() ;
+
+       for(MiahootDTO miahootDTO :miahootDTOList){
+        Miahoot mia = miahootMapper.dtoToEntity(miahootDTO);
+         list.add(mia);
+       }
+       return list;
+    }
 
     /**
      * Définition de la fonction util<br>
@@ -70,5 +88,11 @@ public class TestMapperUtils {
     @Retention(RetentionPolicy.CLASS)
     @Target(ElementType.METHOD)
     public @interface ToSumTestInt {
+    }
+
+    @Qualifier
+    @Retention(RetentionPolicy.CLASS)
+    @Target(ElementType.METHOD)
+    public @interface listMiahootToListMiahootDTO {
     }
 }

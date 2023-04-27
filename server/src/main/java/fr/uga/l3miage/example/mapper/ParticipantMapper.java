@@ -5,7 +5,7 @@ import fr.uga.l3miage.example.response.ParticipantDTO;
 import fr.uga.l3miage.example.models.Participant;
 import org.mapstruct.Mapper;
 
-@Mapper(uses = Participant.class)
+@Mapper(componentModel = "spring")
 public interface ParticipantMapper {
     Participant dtoToEntity(CreateParticipantRequest request);
     ParticipantDTO entityToDTO(Participant participant);

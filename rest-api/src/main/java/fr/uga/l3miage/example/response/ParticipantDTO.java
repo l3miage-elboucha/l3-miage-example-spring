@@ -1,12 +1,11 @@
 package fr.uga.l3miage.example.response;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
-@Builder
-public class ParticipantDTO extends UtilisateurDTO {
+@Setter
+@Getter
+@SuperBuilder
+public class ParticipantDTO extends UtilisateurDTO{
     MiahootDTO participantMiahoot;
 }

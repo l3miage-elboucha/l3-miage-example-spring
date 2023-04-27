@@ -1,10 +1,10 @@
-/*
 package fr.uga.l3miage.example.service;
 
 import fr.uga.l3miage.example.component
 
 
         .TeacherComponent;
+import fr.uga.l3miage.example.request.CreateTeacherRequest;
 import fr.uga.l3miage.example.response.TeacherDTO;
 import fr.uga.l3miage.example.exception.technical.TeacherEntityNotFoundException;
 import fr.uga.l3miage.example.exception.technical.TeacherAlreadyExistsException;
@@ -39,7 +39,7 @@ public class ServiceTeacher {
         }
     }
 
-    public void createTeacher(final TeacherDTO teacherDTO) throws TeacherAlreadyExistsException {
+    public void createTeacher(final CreateTeacherRequest teacherDTO) throws TeacherAlreadyExistsException {
         Teacher newTeacher = teacherMapper.dtoToEntity(teacherDTO);
         try {
             teacherComponent.createTeacher(newTeacher);
@@ -65,4 +65,3 @@ public class ServiceTeacher {
     }
 
 }
-*/

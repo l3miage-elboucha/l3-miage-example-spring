@@ -16,4 +16,5 @@ public class MiahootDTO {
      List<ParticipantDTO> participants ;
      String nom ;
      List<QuestionDTO> questions  ;
+
 }

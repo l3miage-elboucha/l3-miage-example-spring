@@ -1,4 +1,3 @@
-/*
 package fr.uga.l3miage.example.exception.technical;
 
 import lombok.Getter;
@@ -19,4 +18,3 @@ public class TeacherAlreadyExistsException extends Exception {
     }
 
 }
-*/
