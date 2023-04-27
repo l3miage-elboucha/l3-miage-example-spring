@@ -40,6 +40,7 @@ import javax.validation.Valid;
  *  La <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RequestMapping.html">doc</a> !</li>
  * </ul>
  */
+
 @Tag(name = "Exemple tag")
 @CrossOrigin
 @RestController
