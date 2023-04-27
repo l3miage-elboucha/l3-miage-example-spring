@@ -14,15 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class ParticipantController implements ParticipantEndpoint{
     private final ParticipantService participantService;
 
-    @Override
-    public ParticipantDTO getParticipantDTO(String username){return participantService.getParticipant(username);
+    public ParticipantDTO getParticipant(String username){return participantService.getParticipant(username);
     }
 
-    @Override
-    public void createParticipantDTO(CreateParticipantRequest request){ participantService.createParticipant(request);}
+    public void createParticipant(CreateParticipantRequest request){ participantService.createParticipant(request);}
 
-    @Override
-    public void deleteParticipantDTO(String username){participantService.deleteParticipant(username);}
+    public void deleteParticipant(String username){participantService.deleteParticipant(username);}
 
 
 

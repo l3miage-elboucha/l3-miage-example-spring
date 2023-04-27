@@ -2,7 +2,6 @@ package fr.uga.l3miage.example.repository;
 
 import fr.uga.l3miage.example.models.Miahoot;
 import fr.uga.l3miage.example.models.Teacher;
-import fr.uga.l3miage.example.models.Utilisateur;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

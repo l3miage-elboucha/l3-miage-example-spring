@@ -5,17 +5,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
-@DiscriminatorValue("2")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Participant extends Utilisateur {
+@AllArgsConstructor
+public class Participant {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String nom;
     @ManyToOne
     private Miahoot participantMiahoot;
 }

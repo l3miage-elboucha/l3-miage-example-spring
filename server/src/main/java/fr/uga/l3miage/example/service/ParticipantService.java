@@ -37,7 +37,7 @@ public class ParticipantService {
         try {
             participantComponent.createParticipant(newParticipant);
         }catch (ParticipantAlreadyExistException ex) {
-            throw new ParticipantAlreadyExistException("le participant"+newParticipant.getUserName() +" existe deja");
+            throw new ParticipantAlreadyExistException("le participant"+newParticipant.getNom() +" existe deja");
         }
     }
 

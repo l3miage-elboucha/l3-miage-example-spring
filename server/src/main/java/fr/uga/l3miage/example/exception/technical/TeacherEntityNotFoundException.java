@@ -7,16 +7,16 @@ import org.springframework.http.HttpStatus;
 @Getter
 public class TeacherEntityNotFoundException extends RuntimeException {
     
-    private String username;
+    private Long id;
 
-    public TeacherEntityNotFoundException(String message, String username) {
+    public TeacherEntityNotFoundException(String message, Long id) {
         super(message);
-        this.username = username;
+        this.id = id;
     }
 
-    public TeacherEntityNotFoundException(String message, String username, Throwable cause) {
+    public TeacherEntityNotFoundException(String message,  Long id, Throwable cause) {
         super(message, cause);
-        this.username = username;
+        this.id = id;
     }
 
     public HttpStatus getHttpStatus() {

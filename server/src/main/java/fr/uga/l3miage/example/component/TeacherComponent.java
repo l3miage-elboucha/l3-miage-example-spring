@@ -17,29 +17,29 @@ public class TeacherComponent {
     private final TeacherMapper teacherMapper;
 
     //Return Teacher if it exists
-    public Teacher getTeacher(final String username) throws TeacherEntityNotFoundException {
-        return teacherRepository.findTeacherByUserName(username)
-                .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username ", username));
+    public Teacher getTeacher(final Long id) throws TeacherEntityNotFoundException {
+        return teacherRepository.findTeacherById(id)
+                .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username ", id));
     }
 
     public void createTeacher(final Teacher teacher) throws TeacherAlreadyExistsException {
-        if (teacherRepository.findTeacherByUserName(teacher.getUserName()).isPresent()) {
-            throw new TeacherAlreadyExistsException("Username already taken ", teacher.getUserName());
+        if (teacherRepository.findTeacherById(teacher.getId()).isPresent()) {
+            throw new TeacherAlreadyExistsException("Username already taken ", teacher.getNom());
         } else {
             teacherRepository.save(teacher);
         }
     }
 
-    public void updateTeacherUsername(final String username, final String newUsername) throws TeacherEntityNotFoundException {
-        Teacher teacher = teacherRepository.findTeacherByUserName(username)
-                .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username ", username));
-        teacher.setUserName(newUsername);
+    public void updateTeacherUsername(final Long id, final String newUsername) throws TeacherEntityNotFoundException {
+        Teacher teacher = teacherRepository.findTeacherById(id)
+                .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username ", id));
+        teacher.setNom(newUsername);
         teacherRepository.save(teacher);
     }
 
-    public void deleteTeacher(final String username) throws TeacherEntityNotFoundException {
-        Teacher teacher = teacherRepository.findTeacherByUserName(username)
-                .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username ", username));
+    public void deleteTeacher(final Long id) throws TeacherEntityNotFoundException {
+        Teacher teacher = teacherRepository.findTeacherById(id)
+                .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username ", id));
         teacherRepository.delete(teacher);
     }
 

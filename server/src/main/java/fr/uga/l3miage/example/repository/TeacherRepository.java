@@ -8,6 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface TeacherRepository extends JpaRepository<Teacher,String> {
-    Optional<Teacher> findTeacherByUserName(final String userName) ;
-    void deleteTeacherByUserName(final String userName);
+    Optional<Teacher> findTeacherById(final Long id) ;
+    void deleteTeacherById(final Long id);
 }

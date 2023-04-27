@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface ParticipantRepository extends JpaRepository<Participant,String> {
-    Long deleteParticipantByUserName(String username);
-    Optional<Participant> findParticipantByUserName(String s);
+    Long deleteParticipantById(Long id);
+    Optional<Participant> findParticipantById(Long id);
 
 }

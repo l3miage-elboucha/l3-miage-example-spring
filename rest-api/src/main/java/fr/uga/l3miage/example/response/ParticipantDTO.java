@@ -5,7 +5,10 @@ import lombok.experimental.SuperBuilder;
 
 @Setter
 @Getter
-@SuperBuilder
-public class ParticipantDTO extends UtilisateurDTO{
+@Builder
+
+public class ParticipantDTO{
+    Long id ;
+    String nom;
     MiahootDTO participantMiahoot;
 }
