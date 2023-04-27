@@ -23,4 +23,6 @@ public interface TeacherMapper {
     Teacher dtoToEntity(TeacherDTO teacherDTO);
     List<TeacherDTO> entityToDTO(List<Teacher> miahoots);
     List<Teacher> dtoToEntity(List<TeacherDTO> teacherDTOList);
+    @Mapping(source="createdMiahoots",target="createdMiahoots" , qualifiedBy = TestMapperUtils.listMiahootToListMiahootDTO.class)
+    List<Miahoot> map(List<MiahootDTO > miahootDTOList);
 }

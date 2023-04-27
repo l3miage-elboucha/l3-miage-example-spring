@@ -13,7 +13,6 @@ import java.util.List;
 public class TeacherDTO {
 @Null
      List<MiahootDTO> createdMiahoots ;
-@Null
-     List<MiahootDTO> presentedMiahoots ;
-
+/*@Null
+     List<MiahootDTO> presentedMiahoots ;*/
 }

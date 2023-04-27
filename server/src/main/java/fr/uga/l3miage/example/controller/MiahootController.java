@@ -14,7 +14,9 @@ public class MiahootController implements MiahootEndpoint {
     private final ServiceMiahoot miahootService;
 
     @Override
-    public MiahootDTO getMiahootById(Long id) { return miahootService.getMiahootById(id); }
+    public MiahootDTO getMiahootById(Long id) {
+        return miahootService.getMiahootById(id);
+    }
 
     @Override
     public void createMiahoot(final CreatMiahootRequest request){
@@ -26,10 +28,14 @@ public class MiahootController implements MiahootEndpoint {
     }
 
     @Override
-    public void deleteMiahootById(Long id) { miahootService.deleteMiahootById(id); }
+    public void deleteMiahootById(Long id) {
+        miahootService.deleteMiahootById(id);
+    }
 
     @Override
-    public void updateMiahootById(Long id, MiahootDTO miahootDTO) { miahootService.updateMiahootById(id, miahootDTO); }
+    public void updateMiahootById(Long id, MiahootDTO miahootDTO) {
+        miahootService.updateMiahootById(id, miahootDTO);
+    }
 
 
 }

@@ -9,5 +9,5 @@ import java.util.List;
 @Builder
 public class CreateTeacherRequest {
    private  List<MiahootDTO> createdMiahoots ;
-    private List<MiahootDTO> presentedMiahoots ;
+    /*private List<MiahootDTO> presentedMiahoots ;*/
 }
