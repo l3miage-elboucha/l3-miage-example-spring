@@ -13,7 +13,7 @@ import org.mapstruct.Mapper;
 public interface MiahootMapper {
     MiahootDTO entitytoDto(Miahoot miahoot);
     Miahoot map(CreatMiahootRequest request);
-    MiahootdtoToEntity(MiahootDTO miahootDTO);
+    Miahoot dtoToEntity(MiahootDTO miahootDTO);
 
 }
 
