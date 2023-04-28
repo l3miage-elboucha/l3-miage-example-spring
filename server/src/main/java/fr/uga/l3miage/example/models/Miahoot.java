@@ -30,7 +30,7 @@ public class Miahoot {
     private String nom ;
 
     // suppresion d'un miahoot cad suppression de ces questions
-    @OneToMany(mappedBy = "miahoot")
+    @OneToMany(mappedBy = "miahoot",fetch = FetchType.LAZY)
     private List<Question> questions  ;
 
 }

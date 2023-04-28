@@ -15,7 +15,7 @@ public class QuestionController implements QuestionEndpoint {
     public QuestionDTO getQuestion(Long id){return serviceQuestion.getQuestionById(id);
     }
     @Override
-    public void createQuestion(CreateQuestionRequest request){ serviceQuestion.createQuestion(request);}
+    public void createQuestion(Long miahootId , CreateQuestionRequest request){ serviceQuestion.createQuestion(miahootId,request);}
     @Override
     public void deleteQuestion(Long  id){serviceQuestion.deleteQuestion(id);}
 

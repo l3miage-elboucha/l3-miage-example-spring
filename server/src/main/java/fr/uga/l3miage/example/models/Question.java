@@ -21,6 +21,6 @@ public class Question {
     @ManyToOne(fetch = FetchType.LAZY)
     private Miahoot miahoot ;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany(mappedBy = "question",fetch = FetchType.EAGER)
     private List<Response> responses ;
 }
