@@ -46,6 +46,17 @@ public class ServiceQuestion {
             throw new QuestionAlreadyExistsException("la question "+newQuestion.getId() +" existe deja");
         }
     }
+
+
+    @SneakyThrows
+    @Transactional
+    public void updateQuestion(final Long id, final String label) throws QuestionNotFoundException {
+        try {
+            questionComponent.updateQuestion(id, label);
+        } catch (QuestionNotFoundException ex) {
+            throw new QuestionNotFoundException("Impossible de charger l'entité."+ id);
+        }
+    }
     @SneakyThrows
     @Transactional
     public void deleteQuestion(final Long id) throws QuestionNotFoundException {

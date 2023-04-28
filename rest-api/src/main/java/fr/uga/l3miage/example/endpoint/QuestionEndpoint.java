@@ -3,12 +3,14 @@ package fr.uga.l3miage.example.endpoint;
 import fr.uga.l3miage.example.error.TestEntityNotDeletedErrorResponse;
 import fr.uga.l3miage.example.error.TestNotFoundErrorResponse;
 import fr.uga.l3miage.example.request.CreateQuestionRequest;
+import fr.uga.l3miage.example.response.MiahootDTO;
 import fr.uga.l3miage.example.response.QuestionDTO;
 import fr.uga.l3miage.example.response.Test;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -44,4 +46,17 @@ public interface QuestionEndpoint {
             content = @Content(schema = @Schema(implementation = TestEntityNotDeletedErrorResponse.class),mediaType = MediaType.APPLICATION_JSON_VALUE))
     @ResponseStatus(HttpStatus.OK)
     void deleteQuestion(@PathVariable Long id);
+
+    @PutMapping("{id}")
+    @Operation(summary = "Update a Question by its id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Question updated",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = MiahootDTO.class)) }),
+            @ApiResponse(responseCode = "400", description = "Invalid id supplied",
+                    content = @Content),
+            @ApiResponse(responseCode = "404", description = "Question not found",
+                    content = @Content) })
+
+    void updateQuestion(@PathVariable("id") Long id, @RequestBody String newLabel);
 }

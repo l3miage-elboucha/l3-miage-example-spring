@@ -18,4 +18,9 @@ public class QuestionController implements QuestionEndpoint {
     public void createQuestion(CreateQuestionRequest request){ serviceQuestion.createQuestion(request);}
     @Override
     public void deleteQuestion(Long  id){serviceQuestion.deleteQuestion(id);}
+
+    @Override
+    public void updateQuestion(Long id , String newLabel){
+        serviceQuestion.updateQuestion(id,newLabel);
+    }
 }
