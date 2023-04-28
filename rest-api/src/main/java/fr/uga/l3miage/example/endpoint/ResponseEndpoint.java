@@ -19,7 +19,7 @@ import javax.validation.Valid;
 @Tag(name = "Response tag")
 @CrossOrigin
 @RestController
-@RequestMapping("api/responses/")
+@RequestMapping(value="api/responses/",produces = "application/json")
 public interface ResponseEndpoint {
 
     @GetMapping("{id}")

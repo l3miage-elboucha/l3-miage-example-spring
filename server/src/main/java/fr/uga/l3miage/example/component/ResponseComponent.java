@@ -3,15 +3,10 @@ package fr.uga.l3miage.example.component;
 
 import fr.uga.l3miage.example.exception.technical.QuestionNotFoundException;
 import fr.uga.l3miage.example.mapper.ResponseMapper;
-import fr.uga.l3miage.example.models.Question;
 import fr.uga.l3miage.example.models.Response;
-import fr.uga.l3miage.example.repository.QuestionRepository;
 import fr.uga.l3miage.example.repository.ResponseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor

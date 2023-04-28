@@ -8,6 +8,7 @@ import fr.uga.l3miage.example.error.TestNotFoundErrorResponse;
 import fr.uga.l3miage.example.error.DescriptionAlreadyUseErrorResponse;
 import fr.uga.l3miage.example.request.CreateTestRequest;
 import fr.uga.l3miage.example.response.Test;
+import io.swagger.v3.core.util.Json;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -44,7 +45,7 @@ import javax.validation.Valid;
 @Tag(name = "Exemple tag")
 @CrossOrigin
 @RestController
-@RequestMapping("exemple/")
+@RequestMapping(value = "exemple/" , produces = "application/json")
 public interface ExampleEndpoint {
 
     /**

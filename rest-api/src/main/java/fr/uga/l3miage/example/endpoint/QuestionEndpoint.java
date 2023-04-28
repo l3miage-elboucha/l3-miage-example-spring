@@ -21,7 +21,7 @@ import javax.validation.Valid;
 @Tag(name = "Question tag")
 @CrossOrigin
 @RestController
-@RequestMapping("api/question/")
+@RequestMapping(value="api/question/",produces = "application/json")
 public interface QuestionEndpoint {
 
     @GetMapping("{id}")
