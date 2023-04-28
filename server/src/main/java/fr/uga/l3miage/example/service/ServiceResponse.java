@@ -19,6 +19,9 @@ import fr.uga.l3miage.example.response.ResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ServiceResponse {
@@ -34,10 +37,23 @@ public class ServiceResponse {
         }
     }
 
-    public void createResponse(final CreateResponseRequest request) throws ResponseAlreadyExistsException {
+    public List<ResponseDTO> getResponsesByQuestion(Question question){
+        try{
+            List<ResponseDTO> listDTO = new ArrayList<>();
+            List<Response> listR = responseComponent.getResponsesByQuestion(question);
+            for(Response r : listR){
+                listDTO.add(responseMapper.entityToDTO(r));
+            }
+            return listDTO;
+        }catch(QuestionNotFoundException ex){
+            throw new QuestionNotFoundException("Question voulu non trouvé");
+        }
+    }
+
+    public void createResponse(final Long questionId,final CreateResponseRequest request) throws ResponseAlreadyExistsException {
         Response newResponse = responseMapper.dtoToEntity(request);
         try {
-            responseComponent.createResponse(newResponse);
+            responseComponent.createResponse(questionId,newResponse);
         }catch (ResponseAlreadyExistsException ex) {
             throw new ResponseAlreadyExistsException("la question "+newResponse.getId() +" existe deja");
         }
