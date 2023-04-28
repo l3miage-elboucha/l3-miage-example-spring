@@ -20,7 +20,6 @@ import javax.transaction.Transactional;
 @RequiredArgsConstructor
 public class ParticipantService {
     private static final String ERROR_DETECTED = "Une erreur lors de la création de l'entité Participant à été détecté.";
-    private final ParticipantRepository participantRepository ;
     private final ParticipantMapper participantMapper;
     private final ParticipantComponent participantComponent ;
 

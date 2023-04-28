@@ -31,7 +31,7 @@ public interface ResponseEndpoint {
     @ResponseStatus(HttpStatus.OK)
     ResponseDTO getResponseById(@PathVariable("id") Long id);
 
-    @PostMapping
+    @PostMapping()
     @Operation(description = "Création d'une entité ResponseDTO")
     @ApiResponse(responseCode = "201", description = "L'entité Response a bien été créée.")
     @ResponseStatus(HttpStatus.CREATED)
