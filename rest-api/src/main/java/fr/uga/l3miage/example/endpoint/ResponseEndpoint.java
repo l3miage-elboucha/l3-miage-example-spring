@@ -31,11 +31,11 @@ public interface ResponseEndpoint {
     @ResponseStatus(HttpStatus.OK)
     ResponseDTO getResponseById(@PathVariable("id") Long id);
 
-    @PostMapping()
+    @PostMapping("question/{questionID}")
     @Operation(description = "Création d'une entité ResponseDTO")
     @ApiResponse(responseCode = "201", description = "L'entité Response a bien été créée.")
     @ResponseStatus(HttpStatus.CREATED)
-    void createResponse(@Valid @RequestBody CreateResponseRequest request);
+    void createResponse(@PathVariable Long questionID , @Valid @RequestBody CreateResponseRequest request);
 
     @DeleteMapping("{id}")
     @Operation(description = "Suppression d'une réponse en bd")
@@ -45,12 +45,12 @@ public interface ResponseEndpoint {
     @ResponseStatus(HttpStatus.OK)
     void deleteResponse(@PathVariable Long id);
 
-    @PutMapping("{id}")
+/*    @PutMapping("{id}")
     @Operation(description = "Modification d'une réponse en bd")
     @ApiResponse(responseCode = "200", description = "L'entité Response a bien été modifiée.")
     @ApiResponse(responseCode = "404", description = "Renvoie une erreur 404 si l'entité n'a pu être modifiée",
             content = @Content(schema = @Schema(implementation = TestNotFoundErrorResponse.class),mediaType = MediaType.APPLICATION_JSON_VALUE))
     @ResponseStatus(HttpStatus.OK)
-    void updateResponse(@PathVariable Long id, @Valid @RequestBody ResponseDTO responseDTO);
+    void updateResponse(@PathVariable Long id, @Valid @RequestBody ResponseDTO responseDTO);*/
 
 }

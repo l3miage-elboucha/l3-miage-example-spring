@@ -6,6 +6,7 @@ import fr.uga.l3miage.example.mapper.QuestionMapper;
 import fr.uga.l3miage.example.models.Miahoot;
 import fr.uga.l3miage.example.models.Question;
 import fr.uga.l3miage.example.repository.QuestionRepository;
+import fr.uga.l3miage.example.response.QuestionDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -21,7 +22,7 @@ public class QuestionComponent {
                 .orElseThrow(() -> new QuestionNotFoundException("Aucune question ne possede" + id ));
     }
 
-    public void createQuestion(Long miahootId ,final Question question) throws QuestionNotFoundException {
+    public QuestionDTO createQuestion(Long miahootId , final Question question) throws QuestionNotFoundException {
 
         if (questionRepository.getQuestionById(question.getId()).isPresent()) {
             throw new QuestionNotFoundException("La question suivant "+ question.getId()+"deja existante.");
@@ -29,8 +30,9 @@ public class QuestionComponent {
             throw new MiahootEntityNotFoundException("La miahoot suivant   n'existant pas .",miahootId);
         }else {
             Miahoot miahoot = miahootComponent.getMiahoot(miahootId) ;
-            miahoot.getQuestions().add(question);
+            question.setMiahoot(miahoot);
             questionRepository.save(question);
+            return questionMapper.entityToDto(question) ;
         }
 
     }

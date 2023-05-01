@@ -38,7 +38,7 @@ public class ResponseComponent {
             throw new QuestionNotFoundException("aucune question ne possede cette "+questionId);
         }else {
             Question question = questionComponent.getQuestion(questionId);
-            question.getResponses().add(response);
+            response.setQuestion(question);
             responseRepository.save(response);
         }
     }

@@ -38,10 +38,10 @@ public class ServiceQuestion {
         }
     }
 
-    public void createQuestion(final Long miahootId ,final CreateQuestionRequest request) throws QuestionAlreadyExistsException {
+    public QuestionDTO createQuestion(final Long miahootId ,final CreateQuestionRequest request) throws QuestionAlreadyExistsException {
         Question newQuestion = questionMapper.dtoToEntity(request);
         try {
-            questionComponent.createQuestion(miahootId,newQuestion);
+            return questionComponent.createQuestion(miahootId,newQuestion);
         }catch (QuestionAlreadyExistsException ex) {
             throw new QuestionAlreadyExistsException("la question "+newQuestion.getId() +" existe deja");
         }

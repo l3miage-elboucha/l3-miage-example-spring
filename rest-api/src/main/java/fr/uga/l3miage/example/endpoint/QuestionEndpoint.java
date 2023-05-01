@@ -37,7 +37,7 @@ public interface QuestionEndpoint {
     @Operation(description = "Création d'une entité QuestionDTO")
     @ApiResponse(responseCode = "201", description = "L'entité Question a bien été créée.")
     @ResponseStatus(HttpStatus.CREATED)
-    void createQuestion(@PathVariable Long miahootId ,@Valid @RequestBody CreateQuestionRequest request);
+    QuestionDTO createQuestion(@PathVariable Long miahootId ,@Valid @RequestBody CreateQuestionRequest request);
 
     @DeleteMapping("{id}")
     @Operation(description = "Suppression d'une question en bd")
