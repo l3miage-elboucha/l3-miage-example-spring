@@ -23,9 +23,9 @@ public class ResponseComponent {
                 .orElseThrow(() -> new QuestionNotFoundException("Aucune question ne possede" + id ));
     }
 
-    public List<Response> getResponsesByQuestion(Question question){
-        if(question != null){
-            return responseRepository.getResponsesByQuestion(question);
+    public List<Response> getResponsesByQuestion(Long questionId){
+        if(questionId != null){
+            return responseRepository.getResponsesByQuestion(questionId);
         }else{
             throw new QuestionNotFoundException("on peut pas recuperer les reponses d'une question inexstante");
         }

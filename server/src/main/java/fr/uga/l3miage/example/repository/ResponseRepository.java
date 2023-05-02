@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface ResponseRepository extends JpaRepository<Response,Long> {
     Optional<Response> getResponseById(final Long id);
-    List<Response> getResponsesByQuestion(Question question);
+    List<Response> getResponsesByQuestion(final Long questionId);
     Response findResponseById(final Long id);
     Long deleteResponseById(final Long id);
 

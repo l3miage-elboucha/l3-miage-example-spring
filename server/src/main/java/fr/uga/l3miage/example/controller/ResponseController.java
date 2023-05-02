@@ -5,7 +5,12 @@ import fr.uga.l3miage.example.request.CreateResponseRequest;
 import fr.uga.l3miage.example.response.ResponseDTO;
 import fr.uga.l3miage.example.service.ServiceResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
@@ -19,6 +24,9 @@ final private ServiceResponse serviceResponse ;
     }
 
     @Override
+    public List<ResponseDTO> getResponsesByQuestion(@PathVariable("questionId") Long questionId){ return serviceResponse.getResponsesByQuestion(questionId);}
+
+    @Override
     public void createResponse(Long questionID, CreateResponseRequest question) {
         serviceResponse.createResponse(questionID,question);
     }
@@ -28,8 +36,13 @@ final private ServiceResponse serviceResponse ;
     serviceResponse.deleteResponse(id);
     }
 
-/*    @Override
-    public void updateResponse(Long id, ResponseDTO responseDTO) {
-        serviceResponse.updateResponseValid(id,responseDTO);
-    }*/
+    @Override
+    public void updateResponse(Long id, String label) {
+        serviceResponse.updateResponse(id,label);
+    }
+
+    public void updateResponseValid(@PathVariable Long id, @Valid @RequestBody boolean valid){
+        serviceResponse.updateResponseValid(id, valid);
+    }
+
 }

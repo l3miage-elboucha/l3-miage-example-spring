@@ -37,25 +37,25 @@ public class ServiceResponse {
         }
     }
 
-    public List<ResponseDTO> getResponsesByQuestion(Question question){
-        try{
-            List<ResponseDTO> listDTO = new ArrayList<>();
-            List<Response> listR = responseComponent.getResponsesByQuestion(question);
-            for(Response r : listR){
-                listDTO.add(responseMapper.entityToDTO(r));
-            }
-            return listDTO;
-        }catch(QuestionNotFoundException ex){
-            throw new QuestionNotFoundException("Question voulu non trouvé");
-        }
-    }
-
     public void createResponse(final Long questionId,final CreateResponseRequest request) throws ResponseAlreadyExistsException {
         Response newResponse = responseMapper.dtoToEntity(request);
         try {
             responseComponent.createResponse(questionId,newResponse);
         }catch (ResponseAlreadyExistsException ex) {
             throw new ResponseAlreadyExistsException("la question "+newResponse.getId() +" existe deja");
+        }
+    }
+
+    public List<ResponseDTO> getResponsesByQuestion(Long questionId){
+        try{
+            List<ResponseDTO> listDTO = new ArrayList<>();
+            List<Response> listR = responseComponent.getResponsesByQuestion(questionId);
+            for(Response r : listR){
+                listDTO.add(responseMapper.entityToDTO(r));
+            }
+            return listDTO;
+        }catch(QuestionNotFoundException ex){
+            throw new QuestionNotFoundException("Question voulu non trouvé");
         }
     }
 
@@ -68,11 +68,11 @@ public class ServiceResponse {
 
     }
 
-    public void updateResposne(final Long id , final String label) throws ResponseEntityNotFoundException{
+    public void updateResponse(final Long id , final String label) throws ResponseEntityNotFoundException{
         if(id != null){
             responseComponent.updateResponse(id,label);
         }else{
-            throw new ResponseEntityNotFoundException("cet id + id+ ne correspond à aucune reponses existante");
+            throw new ResponseEntityNotFoundException("cet id "+ id +" ne correspond à aucune reponses existante");
         }
     }
 
@@ -80,7 +80,7 @@ public class ServiceResponse {
         if(id != null){
             responseComponent.updateResponseValid(id,valid);
         }else{
-            throw new ResponseEntityNotFoundException("cet id + id+ ne correspond à aucune reponses existante");
+            throw new ResponseEntityNotFoundException("cet id "+ id +" ne correspond à aucune reponses existante");
         }
     }
 }
