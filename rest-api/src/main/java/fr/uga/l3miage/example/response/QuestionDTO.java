@@ -10,6 +10,5 @@ public class QuestionDTO {
 
      Long id ;
      String label ;
-     MiahootDTO miahoot ;
      List<ResponseDTO> responses ;
 }

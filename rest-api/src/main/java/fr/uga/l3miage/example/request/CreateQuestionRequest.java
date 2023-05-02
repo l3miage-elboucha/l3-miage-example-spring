@@ -15,6 +15,5 @@ import java.util.List;
 public class CreateQuestionRequest {
     private Long id ;
     private String label ;
-    private MiahootDTO miahoot ;
     private List<ResponseDTO> responses ;
 }

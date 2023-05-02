@@ -65,13 +65,13 @@ public interface ResponseEndpoint {
     @ResponseStatus(HttpStatus.OK)
     void updateResponse(@PathVariable Long id, @Valid @RequestBody String label);
 
-    @PutMapping("{id}")
+/*    @PutMapping("{id}")
     @Operation(description = "Modification de la validite d'une réponse en bd")
     @ApiResponse(responseCode = "200", description = "L'entité Response a bien été modifiée.")
     @ApiResponse(responseCode = "404", description = "Renvoie une erreur 404 si l'entité n'a pu être modifiée",
             content = @Content(schema = @Schema(implementation = TestNotFoundErrorResponse.class), mediaType = MediaType.APPLICATION_JSON_VALUE))
     @ResponseStatus(HttpStatus.OK)
-    void updateResponseValid(@PathVariable Long id, @Valid @RequestBody boolean valid);
+    void updateResponseValid(@PathVariable Long id, @Valid @RequestBody boolean valid);*/
 }
 
 

@@ -41,9 +41,9 @@ final private ServiceResponse serviceResponse ;
         serviceResponse.updateResponse(id,label);
     }
 
-    @Override
+/*    @Override
     public void updateResponseValid(@PathVariable Long id, @Valid @RequestBody boolean valid){
         serviceResponse.updateResponseValid(id, valid);
-    }
+    }*/
 
 }
