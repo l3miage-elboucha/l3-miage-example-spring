@@ -7,5 +7,7 @@ import lombok.Builder;
 @Builder
 @Schema(description = "Correspond à la requête permettant de créer une entité Participant")
 public class CreateParticipantRequest {
+    Long id ;
+    String nom;
     MiahootDTO participantMiahoot;
 }
