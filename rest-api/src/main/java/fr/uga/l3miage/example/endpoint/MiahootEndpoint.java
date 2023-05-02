@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -16,7 +17,7 @@ import javax.validation.Valid;
 @Tag(name = "Miahoot tag")
 @CrossOrigin
 @RestController
-@RequestMapping(value="api/miahoot/" , produces = "application/json")
+@RequestMapping(value="api/miahoots/" , produces = "application/json")
 public interface MiahootEndpoint {
 
     /* Ici on définit un endpoint en mode <b>GET</b> qui nous renvoie un Miahoot */
@@ -36,7 +37,7 @@ public interface MiahootEndpoint {
 
     /* Ici on définit un endpoint en mode <b>POST</b> qui nous renvoie un Miahoot */
 
-    @PostMapping
+    @PostMapping("concepteur/{concepteurId}")
     @Operation(summary = "Create a Miahoot")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Miahoot created",
@@ -44,8 +45,8 @@ public interface MiahootEndpoint {
                             schema = @Schema(implementation = MiahootDTO.class)) }),
             @ApiResponse(responseCode = "400", description = "Invalid Miahoot",
                     content = @Content) })
-
-    void createMiahoot(@Valid @RequestBody CreatMiahootRequest request);
+    @ResponseStatus(HttpStatus.CREATED)
+    MiahootDTO createMiahoot(@PathVariable Long concepteurId,@Valid @RequestBody CreatMiahootRequest request);
 
     /* Ici on définit un endpoint en mode <b>DELETE<b> pour supprimer une entité Miahoot */
 

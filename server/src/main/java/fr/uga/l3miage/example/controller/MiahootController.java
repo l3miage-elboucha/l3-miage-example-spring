@@ -19,12 +19,13 @@ public class MiahootController implements MiahootEndpoint {
     }
 
     @Override
-    public void createMiahoot(final CreatMiahootRequest request){
+    public MiahootDTO createMiahoot(final Long concepteurId, final CreatMiahootRequest request){
         try {
-            miahootService.createMiahoot(request);
+            return  miahootService.createMiahoot(concepteurId,request);
         } catch (MiahootAlreadyExistsException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     @Override

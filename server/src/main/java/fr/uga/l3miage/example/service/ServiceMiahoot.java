@@ -32,13 +32,14 @@ public class ServiceMiahoot {
         }
     }
 
-    public void createMiahoot(final CreatMiahootRequest miahootRequest) throws MiahootAlreadyExistsException {
+    public MiahootDTO createMiahoot(final Long concepteurId,final CreatMiahootRequest miahootRequest) throws MiahootAlreadyExistsException {
         Miahoot newMiahoot = miahootMapper.map(miahootRequest);
         try {
-            miahootComponent.createMiahoot(newMiahoot);
+            miahootComponent.createMiahoot(concepteurId,newMiahoot);
             }catch (MiahootAlreadyExistsException ex) {
                 throw new MiahootAlreadyExistsException(ERROR_DETECTED,newMiahoot.getId(),ex);
         }
+        return miahootMapper.entitytoDto(newMiahoot);
     }
 
     @SneakyThrows

@@ -11,7 +11,6 @@ import java.util.List;
 public class MiahootDTO {
 
      Long id ;
-     TeacherDTO concepteur ;
      TeacherDTO presentateur ;
      List<ParticipantDTO> participants ;
      String nom ;

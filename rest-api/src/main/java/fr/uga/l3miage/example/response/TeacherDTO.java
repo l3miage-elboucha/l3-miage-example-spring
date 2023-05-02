@@ -4,7 +4,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.validation.constraints.Null;
 import java.util.List;
 
 @Builder
@@ -13,8 +12,6 @@ import java.util.List;
 public class TeacherDTO {
      Long id;
      String nom;
-@Null
      List<MiahootDTO> createdMiahoots ;
-/*@Null
-     List<MiahootDTO> presentedMiahoots ;*/
+     List<MiahootDTO> presentedMiahoots ;
 }

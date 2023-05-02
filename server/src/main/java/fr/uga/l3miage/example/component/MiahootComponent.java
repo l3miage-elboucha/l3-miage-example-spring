@@ -4,16 +4,21 @@ package fr.uga.l3miage.example.component;
 import fr.uga.l3miage.example.exception.technical.*;
 import fr.uga.l3miage.example.mapper.MiahootMapper;
 import fr.uga.l3miage.example.models.Miahoot;
+import fr.uga.l3miage.example.models.Teacher;
 import fr.uga.l3miage.example.repository.MiahootRepository;
+import fr.uga.l3miage.example.repository.TeacherRepository;
 import fr.uga.l3miage.example.response.MiahootDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
 public class MiahootComponent {
     private final MiahootRepository miahootRepository;
     private final MiahootMapper miahootMapper;
+    private final TeacherRepository teacherRepository ;
 
 
     //Return Miahoot if it exists
@@ -23,13 +28,16 @@ public class MiahootComponent {
     }
 
     //Create a new Miahoot if it doesn't exist
-    public void createMiahoot(final Miahoot miahoot) throws MiahootAlreadyExistsException {
+    public MiahootDTO createMiahoot(final Long concepteurId,final Miahoot miahoot) throws MiahootAlreadyExistsException {
 
         if (miahootRepository.findMiahootById(miahoot.getId()).isPresent()) {
             throw new MiahootAlreadyExistsException("Miahoot existe déjà en BD. ", miahoot.getId());
         } else {
+            Teacher teacher = teacherRepository.getTeachersById(concepteurId);
+            miahoot.setConcepteur(teacher);
             miahootRepository.save(miahoot);
         }
+        return miahootMapper.entitytoDto(miahoot);
     }
 
     //Delete Miahoot if it exists
