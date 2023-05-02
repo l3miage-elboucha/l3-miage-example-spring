@@ -3,7 +3,6 @@ package fr.uga.l3miage.example.models;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -30,7 +29,7 @@ public class Miahoot {
     private String nom ;
 
     // suppresion d'un miahoot cad suppression de ces questions
-    @OneToMany(mappedBy = "miahoot",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "miahoot")
     private List<Question> questions  ;
 
 }

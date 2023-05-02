@@ -1,18 +1,13 @@
 package fr.uga.l3miage.example.service;
 
 
-import fr.uga.l3miage.example.component.MiahootComponent;
 import fr.uga.l3miage.example.component.QuestionComponent;
-import fr.uga.l3miage.example.exception.technical.*;
-import fr.uga.l3miage.example.mapper.MiahootMapper;
+import fr.uga.l3miage.example.exception.technical.QuestionAlreadyExistsException;
+import fr.uga.l3miage.example.exception.technical.QuestionNotFoundException;
 import fr.uga.l3miage.example.mapper.QuestionMapper;
-import fr.uga.l3miage.example.models.Participant;
 import fr.uga.l3miage.example.models.Question;
-import fr.uga.l3miage.example.repository.MiahootRepository;
 import fr.uga.l3miage.example.repository.QuestionRepository;
-import fr.uga.l3miage.example.request.CreateParticipantRequest;
 import fr.uga.l3miage.example.request.CreateQuestionRequest;
-import fr.uga.l3miage.example.response.MiahootDTO;
 import fr.uga.l3miage.example.response.QuestionDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;

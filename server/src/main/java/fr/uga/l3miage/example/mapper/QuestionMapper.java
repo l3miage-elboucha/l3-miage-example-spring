@@ -10,7 +10,7 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
-@Mapper(uses= ResponseMapper.class)
+@Mapper(componentModel = "spring")
 public interface QuestionMapper {
 
     Question dtoToEntity(QuestionDTO question);

@@ -18,9 +18,9 @@ public class Question {
     private String label ;
 
     // recuperation de chaque question toute seul et pas tous a la fois
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Miahoot miahoot ;
 
-    @OneToMany(mappedBy = "question",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "question")
     private List<Response> responses ;
 }
