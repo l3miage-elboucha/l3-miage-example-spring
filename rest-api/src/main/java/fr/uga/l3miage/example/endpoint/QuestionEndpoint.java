@@ -3,7 +3,6 @@ package fr.uga.l3miage.example.endpoint;
 import fr.uga.l3miage.example.error.TestEntityNotDeletedErrorResponse;
 import fr.uga.l3miage.example.error.TestNotFoundErrorResponse;
 import fr.uga.l3miage.example.request.CreateQuestionRequest;
-import fr.uga.l3miage.example.response.MiahootDTO;
 import fr.uga.l3miage.example.response.QuestionDTO;
 import fr.uga.l3miage.example.response.Test;
 import io.swagger.v3.oas.annotations.Operation;
@@ -47,16 +46,13 @@ public interface QuestionEndpoint {
     @ResponseStatus(HttpStatus.OK)
     void deleteQuestion(@PathVariable Long id);
 
-    @PutMapping("{id}")
+    @PatchMapping("{id}")
     @Operation(summary = "Update a Question by its id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Question updated",
-                    content = { @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = MiahootDTO.class)) }),
-            @ApiResponse(responseCode = "400", description = "Invalid id supplied",
-                    content = @Content),
+            @ApiResponse(responseCode = "202", description = "L'entité à bien été mis à jour"),
             @ApiResponse(responseCode = "404", description = "Question not found",
                     content = @Content) })
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    void updateQuestion(@PathVariable("id") Long id, @RequestBody final QuestionDTO question);
 
-    void updateQuestion(@PathVariable("id") Long id, @RequestBody String newLabel);
 }

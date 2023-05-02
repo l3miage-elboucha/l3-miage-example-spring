@@ -16,14 +16,13 @@ public class QuestionController implements QuestionEndpoint {
     }
     @Override
     public QuestionDTO createQuestion(Long miahootId , CreateQuestionRequest request){
-        serviceQuestion.createQuestion(miahootId,request);
         return serviceQuestion.createQuestion(miahootId,request) ;
     }
     @Override
     public void deleteQuestion(Long  id){serviceQuestion.deleteQuestion(id);}
 
     @Override
-    public void updateQuestion(Long id , String newLabel){
-        serviceQuestion.updateQuestion(id,newLabel);
+    public void updateQuestion(Long id , final QuestionDTO question){
+        serviceQuestion.updateQuestion(id,question);
     }
 }

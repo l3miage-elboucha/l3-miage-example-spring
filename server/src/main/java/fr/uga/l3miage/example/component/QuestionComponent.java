@@ -37,12 +37,14 @@ public class QuestionComponent {
 
     }
 
-    public void updateQuestion(final Long id, final String label) throws QuestionNotFoundException {
+    // update the question with the id passed in parameter with the new question passed in parameter
+    public void updateQuestion(final Long id, final QuestionDTO question) throws QuestionNotFoundException {
         Question newQuestion = questionRepository.getQuestionById(id)
                 .orElseThrow(() -> new QuestionNotFoundException("Aucune entité n'a été trouvée avec cette question " + id));
-        newQuestion.setLabel(label);
-        questionRepository.save(newQuestion);
+        newQuestion.setLabel(question.getLabel()); // update the label of the question
+        questionRepository.save(newQuestion); // save = update (if the id already exists)
     }
+
     public void deleteQuestion(final Long id) throws QuestionNotFoundException {
         Long deleted = questionRepository.deleteQuestionById(id);
         if (deleted == 0)
