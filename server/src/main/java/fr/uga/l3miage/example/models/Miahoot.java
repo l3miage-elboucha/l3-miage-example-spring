@@ -3,7 +3,6 @@ package fr.uga.l3miage.example.models;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -12,6 +11,7 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "miahoot")
 public class Miahoot {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

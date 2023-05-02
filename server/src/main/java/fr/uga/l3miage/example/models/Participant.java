@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "participant")
 public class Participant {
 
     @Id
