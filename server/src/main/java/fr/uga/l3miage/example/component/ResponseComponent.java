@@ -2,13 +2,17 @@ package fr.uga.l3miage.example.component;
 
 
 import fr.uga.l3miage.example.exception.technical.QuestionNotFoundException;
+import fr.uga.l3miage.example.exception.technical.ResponseEntityNotFoundException;
 import fr.uga.l3miage.example.mapper.ResponseMapper;
 import fr.uga.l3miage.example.models.Question;
 import fr.uga.l3miage.example.models.Response;
 import fr.uga.l3miage.example.repository.ResponseRepository;
+import fr.uga.l3miage.example.response.QuestionDTO;
+import fr.uga.l3miage.example.response.ResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Component
@@ -43,6 +47,7 @@ public class ResponseComponent {
         }
     }
 
+    @Transactional
     public void deleteResponse(final Long id) throws QuestionNotFoundException {
         Long deleted = responseRepository.deleteResponseById(id);
         if (deleted == 0)
@@ -50,23 +55,13 @@ public class ResponseComponent {
 
     }
 
-    public void updateResponse(final Long id, final String label){
-        if(responseRepository.getResponseById(id).isPresent()){
-            Response updatedResponse = responseRepository.findResponseById(id);
-            updatedResponse.setLabel(label);
-            responseRepository.save(updatedResponse);
-        }else{
-            throw new QuestionNotFoundException("aucune reponse ne possede  cet "+id);
-        }
+    public void updateResponse(final Long id, ResponseDTO response){
+        Response newResponse = responseRepository.getResponseById(id)
+                .orElseThrow(() -> new ResponseEntityNotFoundException("Aucune entité n'a été trouvée avec cette reponse " + id));
+        newResponse.setLabel(response.getLabel());
+        newResponse.setEstValide(response.isEstValide());
+        responseRepository.save(newResponse);
     }
 
-    public void updateResponseValid(final Long id, final Boolean valid){
-        if(responseRepository.getResponseById(id).isPresent()){
-            Response updatedResponse =  responseRepository.findResponseById(id);
-            updatedResponse.setEstValide(valid);
-        }else{
-            throw new QuestionNotFoundException("aucune reponse ne possede  cet "+id);
-        }
-    }
 
 }

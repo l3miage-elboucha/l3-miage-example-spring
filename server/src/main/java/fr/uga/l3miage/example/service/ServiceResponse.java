@@ -68,19 +68,12 @@ public class ServiceResponse {
 
     }
 
-    public void updateResponse(final Long id , final String label) throws ResponseEntityNotFoundException{
+    public void updateResponse(final Long id , ResponseDTO response) throws ResponseEntityNotFoundException{
         if(id != null){
-            responseComponent.updateResponse(id,label);
+            responseComponent.updateResponse(id,response);
         }else{
             throw new ResponseEntityNotFoundException("cet id "+ id +" ne correspond à aucune reponses existante");
         }
     }
 
-    public void updateResponseValid(final Long id , final boolean valid) throws ResponseEntityNotFoundException{
-        if(id != null){
-            responseComponent.updateResponseValid(id,valid);
-        }else{
-            throw new ResponseEntityNotFoundException("cet id "+ id +" ne correspond à aucune reponses existante");
-        }
-    }
 }

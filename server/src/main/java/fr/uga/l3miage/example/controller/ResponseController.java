@@ -37,11 +37,7 @@ final private ServiceResponse serviceResponse ;
     }
 
     @Override
-    public void updateResponse(Long id, String label) {
-        serviceResponse.updateResponse(id,label);
-    }
+    public void updateResponse(Long id,ResponseDTO response) {serviceResponse.updateResponse(id,response);}
 
-/*   @Override
-    public void updateResponseValid(@PathVariable Long id, @Valid @RequestBody boolean valid){ serviceResponse.updateResponseValid(id, valid);}*/
 
 }
