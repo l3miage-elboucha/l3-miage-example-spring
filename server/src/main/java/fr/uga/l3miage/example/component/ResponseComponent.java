@@ -20,9 +20,8 @@ import java.util.List;
 public class ResponseComponent {
     private final ResponseRepository responseRepository;
     private final QuestionComponent questionComponent;
-    private final ResponseMapper responseMapper;
 
-    public Response getResponse(final Long id ) throws QuestionNotFoundException {
+    public Response getResponse(final Long id ) throws ResponseEntityNotFoundException {
         return responseRepository.getResponseById(id)
                 .orElseThrow(() -> new QuestionNotFoundException("Aucune question ne possede" + id ));
     }
@@ -31,15 +30,15 @@ public class ResponseComponent {
         if(questionId != null){
             return responseRepository.getResponsesByQuestion(questionId);
         }else{
-            throw new QuestionNotFoundException("on peut pas recuperer les reponses d'une question inexstante");
+            throw new ResponseEntityNotFoundException("on peut pas recuperer les reponses d'une question inexstante");
         }
     }
 
-    public void createResponse(Long questionId ,final Response response) throws QuestionNotFoundException {
+    public void createResponse(Long questionId ,final Response response) throws ResponseEntityNotFoundException {
         if (responseRepository.getResponseById(response.getId()).isPresent()) {
-            throw new QuestionNotFoundException("La question suivant "+ response.getId()+"deja existante.");
+            throw new ResponseEntityNotFoundException("La question suivant "+ response.getId()+"deja existante.");
         } else if(questionComponent.getQuestion(questionId) == null){
-            throw new QuestionNotFoundException("aucune question ne possede cette "+questionId);
+            throw new ResponseEntityNotFoundException("aucune question ne possede cette "+questionId);
         }else {
             Question question = questionComponent.getQuestion(questionId);
             response.setQuestion(question);
@@ -48,7 +47,7 @@ public class ResponseComponent {
     }
 
     @Transactional
-    public void deleteResponse(final Long id) throws QuestionNotFoundException {
+    public void deleteResponse(final Long id) throws ResponseEntityNotFoundException {
         Long deleted = responseRepository.deleteResponseById(id);
         if (deleted == 0)
             throw new QuestionNotFoundException("Aucune question ne possede"+ id);
