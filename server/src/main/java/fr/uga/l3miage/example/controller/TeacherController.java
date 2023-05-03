@@ -18,9 +18,9 @@ public class TeacherController implements TeacherEndpoint {
     @Override
     public TeacherDTO getTeacher(Long id){return serviceTeacher.getTeacher(id);}
     @Override
-    public void createTeacher(CreateTeacherRequest request) {
+    public TeacherDTO createTeacher(CreateTeacherRequest request) {
         try {
-            serviceTeacher.createTeacher(request);
+            return serviceTeacher.createTeacher(request);
         } catch (TeacherAlreadyExistsException e) {
             throw new RuntimeException(e);
         }

@@ -38,7 +38,7 @@ public interface TeacherEndpoint {
     @Operation(description = "Création d'une entité teacherDTO")
     @ApiResponse(responseCode = "201", description = "L'entité teacher a bien été créée.")
     @ResponseStatus(HttpStatus.CREATED)
-    void createTeacher(@Valid @RequestBody CreateTeacherRequest request);
+    TeacherDTO createTeacher(@Valid @RequestBody CreateTeacherRequest request);
 
     @DeleteMapping("{id}")
     @Operation(description = "Suppression d'un teacher en bd")

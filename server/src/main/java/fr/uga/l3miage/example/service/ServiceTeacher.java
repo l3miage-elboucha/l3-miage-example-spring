@@ -42,10 +42,10 @@ public class ServiceTeacher {
         }
     }
 
-    public void createTeacher(final CreateTeacherRequest teacherDTO) throws TeacherAlreadyExistsException {
+    public TeacherDTO createTeacher(final CreateTeacherRequest teacherDTO) throws TeacherAlreadyExistsException {
         Teacher newTeacher = teacherMapper.dtoToEntity(teacherDTO);
         try {
-            teacherComponent.createTeacher(newTeacher);
+            return teacherComponent.createTeacher(newTeacher);
         } catch (TeacherAlreadyExistsException ex) {
             throw new TeacherAlreadyExistsException(ERROR_DETECTED, newTeacher.getNom(), ex);
         }

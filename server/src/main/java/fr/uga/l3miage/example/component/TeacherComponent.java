@@ -6,6 +6,7 @@ import fr.uga.l3miage.example.mapper.TeacherMapper;
 import fr.uga.l3miage.example.models.Teacher;
 import fr.uga.l3miage.example.repository.TeacherRepository;
 import fr.uga.l3miage.example.response.MiahootDTO;
+import fr.uga.l3miage.example.response.TeacherDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -23,11 +24,12 @@ public class TeacherComponent {
                 .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username ", id));
     }
 
-    public void createTeacher(final Teacher teacher) throws TeacherAlreadyExistsException {
+    public TeacherDTO createTeacher(final Teacher teacher) throws TeacherAlreadyExistsException {
         if (teacherRepository.findTeacherById(teacher.getId()).isPresent()) {
             throw new TeacherAlreadyExistsException("Username already taken ", teacher.getNom());
         } else {
             teacherRepository.save(teacher);
+            return teacherMapper.entityToDTO(teacher);
         }
     }
 
