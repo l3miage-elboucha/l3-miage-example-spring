@@ -2,9 +2,8 @@ package fr.uga.l3miage.example.endpoint;
 
 import fr.uga.l3miage.example.error.TestEntityNotDeletedErrorResponse;
 import fr.uga.l3miage.example.error.TestNotFoundErrorResponse;
-import fr.uga.l3miage.example.request.CreateParticipantRequest;
 import fr.uga.l3miage.example.request.CreateTeacherRequest;
-import fr.uga.l3miage.example.response.ParticipantDTO;
+import fr.uga.l3miage.example.response.MiahootDTO;
 import fr.uga.l3miage.example.response.TeacherDTO;
 import fr.uga.l3miage.example.response.Test;
 import io.swagger.v3.oas.annotations.Operation;
@@ -17,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Tag(name = "Teacher tag")
 @CrossOrigin
@@ -46,6 +46,12 @@ public interface TeacherEndpoint {
             content = @Content(schema = @Schema(implementation = TestEntityNotDeletedErrorResponse.class),mediaType = MediaType.APPLICATION_JSON_VALUE))
     @ResponseStatus(HttpStatus.OK)
     void deleteTeacher(@PathVariable Long id);
+
+    @GetMapping("{id}/miahoots")
+    @Operation(description = "Récupérer les miahoots d'un teacher")
+    @ApiResponse(responseCode = "200", description = "Renvoie les miahoots du teacher demandé")
+    @ResponseStatus(HttpStatus.OK)
+    List<MiahootDTO> getMiahoots(@PathVariable Long id);
 
 
 }

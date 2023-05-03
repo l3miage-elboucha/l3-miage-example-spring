@@ -5,6 +5,7 @@ import fr.uga.l3miage.example.component
 
         .TeacherComponent;
 import fr.uga.l3miage.example.request.CreateTeacherRequest;
+import fr.uga.l3miage.example.response.MiahootDTO;
 import fr.uga.l3miage.example.response.TeacherDTO;
 import fr.uga.l3miage.example.exception.technical.TeacherEntityNotFoundException;
 import fr.uga.l3miage.example.exception.technical.TeacherAlreadyExistsException;
@@ -13,6 +14,8 @@ import fr.uga.l3miage.example.models.Teacher;
 import fr.uga.l3miage.example.repository.TeacherRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -59,6 +62,14 @@ public class ServiceTeacher {
     public void deleteTeacher(final Long id) throws TeacherEntityNotFoundException {
         try {
             teacherComponent.deleteTeacher(id);
+        } catch (TeacherEntityNotFoundException ex) {
+            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.", id);
+        }
+    }
+
+    public List<MiahootDTO> getMiahoots(final Long id) throws TeacherEntityNotFoundException {
+        try {
+            return teacherComponent.getMiahoots(id);
         } catch (TeacherEntityNotFoundException ex) {
             throw new TeacherEntityNotFoundException("Impossible de charger l'entité.", id);
         }

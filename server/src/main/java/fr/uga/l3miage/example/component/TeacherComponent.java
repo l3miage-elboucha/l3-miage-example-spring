@@ -3,12 +3,13 @@ package fr.uga.l3miage.example.component;
 import fr.uga.l3miage.example.exception.technical.TeacherAlreadyExistsException;
 import fr.uga.l3miage.example.exception.technical.TeacherEntityNotFoundException;
 import fr.uga.l3miage.example.mapper.TeacherMapper;
-import fr.uga.l3miage.example.models.Miahoot;
 import fr.uga.l3miage.example.models.Teacher;
 import fr.uga.l3miage.example.repository.TeacherRepository;
+import fr.uga.l3miage.example.response.MiahootDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -41,6 +42,12 @@ public class TeacherComponent {
         Teacher teacher = teacherRepository.findTeacherById(id)
                 .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username ", id));
         teacherRepository.delete(teacher);
+    }
+
+    public List<MiahootDTO> getMiahoots(final Long id) throws TeacherEntityNotFoundException {
+        Teacher teacher = teacherRepository.findTeacherById(id)
+                .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username ", id));
+        return teacherMapper.mapToDto(teacher.getCreatedMiahoots());
     }
 
 }
