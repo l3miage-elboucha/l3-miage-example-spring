@@ -41,7 +41,7 @@ public interface ParticipantEndpoint {
     @Operation(description = "Création d'une entité ParticipantDTO")
     @ApiResponse(responseCode = "201", description = "L'entité Participant a bien été créée.")
     @ResponseStatus(HttpStatus.CREATED)
-    void createParticipant(@Valid @RequestBody CreateParticipantRequest request);
+    ParticipantDTO createParticipant(@Valid @RequestBody CreateParticipantRequest request);
 
     @DeleteMapping("{id}")
     @Operation(description = "Suppression d'un participant en bd")

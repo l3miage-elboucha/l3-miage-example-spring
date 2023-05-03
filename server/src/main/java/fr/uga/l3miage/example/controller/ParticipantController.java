@@ -17,7 +17,7 @@ public class ParticipantController implements ParticipantEndpoint{
     public ParticipantDTO getParticipant(Long id){return participantService.getParticipant(id);
     }
     @Override
-    public void createParticipant(CreateParticipantRequest request){ participantService.createParticipant(request);}
+    public ParticipantDTO createParticipant(CreateParticipantRequest request){ return participantService.createParticipant(request);}
     @Override
     public void deleteParticipant(Long  id){participantService.deleteParticipant(id);}
 

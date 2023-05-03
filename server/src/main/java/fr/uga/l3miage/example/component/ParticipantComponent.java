@@ -7,6 +7,7 @@ import fr.uga.l3miage.example.mapper.ParticipantMapper;
 
 import fr.uga.l3miage.example.models.Participant;
 import fr.uga.l3miage.example.repository.ParticipantRepository;
+import fr.uga.l3miage.example.response.ParticipantDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -21,12 +22,13 @@ public class ParticipantComponent {
                 .orElseThrow(() -> new ParticipantEntityNotFoundException("Aucune particpant ne possede" + id +"comme username"));
     }
 
-    public void createParticipant(final Participant participant) throws ParticipantAlreadyExistException {
+    public ParticipantDTO createParticipant(final Participant participant) throws ParticipantAlreadyExistException {
 
         if (participantRepository.findParticipantById(participant.getId()).isPresent()) {
             throw new ParticipantAlreadyExistException("Le participant suivant "+ participant.getNom()+"deja existant.");
         } else {
             participantRepository.save(participant);
+            return participantMapper.entityToDTO(participant);
         }
     }
     public void deleteParticipant(final Long id) throws ParticipantEntityNotFoundException {

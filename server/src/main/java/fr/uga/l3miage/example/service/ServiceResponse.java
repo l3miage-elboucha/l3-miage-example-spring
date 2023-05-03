@@ -37,10 +37,10 @@ public class ServiceResponse {
         }
     }
 
-    public void createResponse(final Long questionId,final CreateResponseRequest request) throws ResponseAlreadyExistsException {
+    public ResponseDTO createResponse(final Long questionId,final CreateResponseRequest request) throws ResponseAlreadyExistsException {
         Response newResponse = responseMapper.dtoToEntity(request);
         try {
-            responseComponent.createResponse(questionId,newResponse);
+            return responseComponent.createResponse(questionId,newResponse);
         }catch (ResponseAlreadyExistsException ex) {
             throw new ResponseAlreadyExistsException("la question "+newResponse.getId() +" existe deja");
         }

@@ -47,7 +47,7 @@ public interface ResponseEndpoint {
     @Operation(description = "Création d'une entité ResponseDTO")
     @ApiResponse(responseCode = "201", description = "L'entité Response a bien été créée.")
     @ResponseStatus(HttpStatus.CREATED)
-    void createResponse(@PathVariable Long questionID, @Valid @RequestBody CreateResponseRequest request);
+    ResponseDTO createResponse(@PathVariable Long questionID, @Valid @RequestBody CreateResponseRequest request);
 
     @DeleteMapping("{id}")
     @Operation(description = "Suppression d'une réponse en bd")

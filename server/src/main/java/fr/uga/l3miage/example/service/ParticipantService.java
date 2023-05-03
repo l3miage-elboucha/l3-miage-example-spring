@@ -31,10 +31,10 @@ public class ParticipantService {
         }
     }
 
-    public void createParticipant(final CreateParticipantRequest request) throws ParticipantAlreadyExistException {
+    public ParticipantDTO createParticipant(final CreateParticipantRequest request) throws ParticipantAlreadyExistException {
         Participant newParticipant = participantMapper.dtoToEntity(request);
         try {
-            participantComponent.createParticipant(newParticipant);
+            return participantComponent.createParticipant(newParticipant);
         }catch (ParticipantAlreadyExistException ex) {
             throw new ParticipantAlreadyExistException("le participant"+newParticipant.getNom() +" existe deja");
         }

@@ -20,6 +20,7 @@ import java.util.List;
 public class ResponseComponent {
     private final ResponseRepository responseRepository;
     private final QuestionComponent questionComponent;
+    private final ResponseMapper responseMapper;
 
     public Response getResponse(final Long id ) throws ResponseEntityNotFoundException {
         return responseRepository.getResponseById(id)
@@ -34,7 +35,7 @@ public class ResponseComponent {
         }
     }
 
-    public void createResponse(Long questionId ,final Response response) throws ResponseEntityNotFoundException {
+    public ResponseDTO createResponse(Long questionId ,final Response response) throws ResponseEntityNotFoundException {
         if (responseRepository.getResponseById(response.getId()).isPresent()) {
             throw new ResponseEntityNotFoundException("La question suivant "+ response.getId()+"deja existante.");
         } else if(questionComponent.getQuestion(questionId) == null){
@@ -43,6 +44,7 @@ public class ResponseComponent {
             Question question = questionComponent.getQuestion(questionId);
             response.setQuestion(question);
             responseRepository.save(response);
+            return responseMapper.entityToDTO(response);
         }
     }
 

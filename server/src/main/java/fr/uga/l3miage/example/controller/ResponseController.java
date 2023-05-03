@@ -27,8 +27,8 @@ final private ServiceResponse serviceResponse ;
     public List<ResponseDTO> getResponsesByQuestion(@PathVariable("questionId") Long questionId){ return serviceResponse.getResponsesByQuestion(questionId);}
 
     @Override
-    public void createResponse(Long questionID, CreateResponseRequest question) {
-        serviceResponse.createResponse(questionID,question);
+    public ResponseDTO createResponse(Long questionID, CreateResponseRequest question) {
+        return serviceResponse.createResponse(questionID,question);
     }
 
     @Override
