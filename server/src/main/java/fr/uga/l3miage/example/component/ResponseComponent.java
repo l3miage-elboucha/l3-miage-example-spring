@@ -52,8 +52,9 @@ public class ResponseComponent {
 
     public void updateResponse(final Long id, final String label){
         if(responseRepository.getResponseById(id).isPresent()){
-            Response updatedResponse =  responseRepository.findResponseById(id);
+            Response updatedResponse = responseRepository.findResponseById(id);
             updatedResponse.setLabel(label);
+            responseRepository.save(updatedResponse);
         }else{
             throw new QuestionNotFoundException("aucune reponse ne possede  cet "+id);
         }
