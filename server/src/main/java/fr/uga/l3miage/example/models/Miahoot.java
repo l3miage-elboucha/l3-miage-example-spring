@@ -1,8 +1,10 @@
 package fr.uga.l3miage.example.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -22,6 +24,11 @@ public class Miahoot {
 
     @ManyToOne
     private Teacher presentateur ;
+
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date miahootBirthday ;
+
+    private Status status ;
 
     @OneToMany(mappedBy = "participantMiahoot")
     private List<Participant> participants ;
