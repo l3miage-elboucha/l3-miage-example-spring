@@ -28,12 +28,12 @@ public class MiahootComponent {
     }
 
     //Create a new Miahoot if it doesn't exist
-    public MiahootDTO createMiahoot(final Long concepteurId,final Miahoot miahoot) throws MiahootAlreadyExistsException {
+    public MiahootDTO createMiahoot(final String concepteurId,final Miahoot miahoot) throws MiahootAlreadyExistsException {
 
         if (miahootRepository.findMiahootById(miahoot.getId()).isPresent()) {
             throw new MiahootAlreadyExistsException("Miahoot existe déjà en BD. ", miahoot.getId());
         } else {
-            Teacher teacher = teacherRepository.getTeachersById(concepteurId);
+            Teacher teacher = teacherRepository.getTeachersByFireBaseId(concepteurId);
             miahoot.setConcepteur(teacher);
             miahootRepository.save(miahoot);
         }

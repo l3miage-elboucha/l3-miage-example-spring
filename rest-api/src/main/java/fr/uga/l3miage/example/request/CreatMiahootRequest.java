@@ -21,8 +21,8 @@ public class CreatMiahootRequest {
     private List<ParticipantDTO> participants ;
     private String nom ;
     private List<QuestionDTO> questions  ;
-    Date miahootBirthday ;
-    StatusDTO status;
+    private Date miahootBirthday ;
+    private StatusDTO status;
 
 
 

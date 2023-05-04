@@ -31,7 +31,7 @@ public interface TeacherEndpoint {
     @ApiResponse(responseCode = "404", description = "Renvoie une erreur 404 si l'entité n'est pas trouvée",
             content = @Content(schema = @Schema(implementation = TestNotFoundErrorResponse.class),mediaType = MediaType.APPLICATION_JSON_VALUE))
     @ResponseStatus(HttpStatus.OK)
-    TeacherDTO getTeacher(@PathVariable Long id);
+    TeacherDTO getTeacher(@PathVariable String id);
 
 
     @PostMapping
@@ -45,13 +45,13 @@ public interface TeacherEndpoint {
     @ApiResponse(responseCode = "418", description = "Renvoie une erreur 418 si l'entité n'a pu être supprimée",
             content = @Content(schema = @Schema(implementation = TestEntityNotDeletedErrorResponse.class),mediaType = MediaType.APPLICATION_JSON_VALUE))
     @ResponseStatus(HttpStatus.OK)
-    void deleteTeacher(@PathVariable Long id);
+    void deleteTeacher(@PathVariable String id);
 
     @GetMapping("{id}/miahoots")
     @Operation(description = "Récupérer les miahoots d'un teacher")
     @ApiResponse(responseCode = "200", description = "Renvoie les miahoots du teacher demandé")
     @ResponseStatus(HttpStatus.OK)
-    List<MiahootDTO> getMiahoots(@PathVariable Long id);
+    List<MiahootDTO> getMiahoots(@PathVariable String id);
 
 
 }

@@ -32,7 +32,7 @@ public class ServiceMiahoot {
         }
     }
 
-    public MiahootDTO createMiahoot(final Long concepteurId,final CreatMiahootRequest miahootRequest) throws MiahootAlreadyExistsException {
+    public MiahootDTO createMiahoot(final String concepteurId,final CreatMiahootRequest miahootRequest) throws MiahootAlreadyExistsException {
         Miahoot newMiahoot = miahootMapper.map(miahootRequest);
         try {
             miahootComponent.createMiahoot(concepteurId,newMiahoot);

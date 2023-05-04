@@ -19,6 +19,7 @@ public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String fireBaseId ;
     private String nom;
 
     @OneToMany(mappedBy = "concepteur")

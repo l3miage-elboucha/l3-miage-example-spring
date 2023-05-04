@@ -46,7 +46,7 @@ public interface MiahootEndpoint {
             @ApiResponse(responseCode = "400", description = "Invalid Miahoot",
                     content = @Content) })
     @ResponseStatus(HttpStatus.CREATED)
-    MiahootDTO createMiahoot(@PathVariable Long concepteurId,@Valid @RequestBody CreatMiahootRequest request);
+    MiahootDTO createMiahoot(@PathVariable String concepteurId,@Valid @RequestBody CreatMiahootRequest request);
 
     /* Ici on définit un endpoint en mode <b>DELETE<b> pour supprimer une entité Miahoot */
 

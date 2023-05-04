@@ -16,7 +16,7 @@ import java.util.List;
 public class TeacherController implements TeacherEndpoint {
     private final ServiceTeacher serviceTeacher;
     @Override
-    public TeacherDTO getTeacher(Long id){return serviceTeacher.getTeacher(id);}
+    public TeacherDTO getTeacher(String id){return serviceTeacher.getTeacher(id);}
     @Override
     public TeacherDTO createTeacher(CreateTeacherRequest request) {
         try {
@@ -26,8 +26,8 @@ public class TeacherController implements TeacherEndpoint {
         }
     }
     @Override
-    public void deleteTeacher(Long  id){serviceTeacher.deleteTeacher(id);}
+    public void deleteTeacher(String  id){serviceTeacher.deleteTeacher(id);}
 
     @Override
-    public List<MiahootDTO> getMiahoots(Long id){return serviceTeacher.getMiahoots(id);}
+    public List<MiahootDTO> getMiahoots(String id){return serviceTeacher.getMiahoots(id);}
 }

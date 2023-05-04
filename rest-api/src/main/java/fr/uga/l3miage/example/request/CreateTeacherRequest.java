@@ -14,6 +14,7 @@ import java.util.List;
 public class CreateTeacherRequest {
     private Long id ;
     private String nom ;
+    private String fireBaseId ;
     private  List<MiahootDTO> createdMiahoots ;
     private List<MiahootDTO> presentedMiahoots ;
 }

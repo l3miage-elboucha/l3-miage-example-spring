@@ -28,17 +28,17 @@ public class ServiceTeacher {
 
     public TeacherDTO getTeacher(final Teacher teacher) {
         try {
-            return teacherMapper.entityToDTO(teacherComponent.getTeacher(teacher.getId()));
+            return teacherMapper.entityToDTO(teacherComponent.getTeacher(teacher.getFireBaseId()));
         } catch (TeacherEntityNotFoundException ex) {
-            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.",teacher.getId());
+            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.");
         }
     }
 
-    public TeacherDTO getTeacher(final Long id) {
+    public TeacherDTO getTeacher(final String id) {
         try {
             return teacherMapper.entityToDTO(teacherComponent.getTeacher(id));
         } catch (TeacherEntityNotFoundException ex) {
-            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.",id);
+            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.");
         }
     }
 
@@ -51,27 +51,27 @@ public class ServiceTeacher {
         }
     }
 
-    public void updateTeacherUsername(final Long id, final String newUsername) throws TeacherEntityNotFoundException {
+    public void updateTeacherUsername(final String id, final String newUsername) throws TeacherEntityNotFoundException {
         try {
             teacherComponent.updateTeacherUsername(id, newUsername);
         } catch (TeacherEntityNotFoundException ex) {
-            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.", id);
+            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.");
         }
     }
 
-    public void deleteTeacher(final Long id) throws TeacherEntityNotFoundException {
+    public void deleteTeacher(final String id) throws TeacherEntityNotFoundException {
         try {
             teacherComponent.deleteTeacher(id);
         } catch (TeacherEntityNotFoundException ex) {
-            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.", id);
+            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.");
         }
     }
 
-    public List<MiahootDTO> getMiahoots(final Long id) throws TeacherEntityNotFoundException {
+    public List<MiahootDTO> getMiahoots(final String id) throws TeacherEntityNotFoundException {
         try {
             return teacherComponent.getMiahoots(id);
         } catch (TeacherEntityNotFoundException ex) {
-            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.", id);
+            throw new TeacherEntityNotFoundException("Impossible de charger l'entité.");
         }
     }
 

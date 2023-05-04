@@ -19,36 +19,36 @@ public class TeacherComponent {
     private final TeacherMapper teacherMapper;
 
     //Return Teacher if it exists
-    public Teacher getTeacher(final Long id) throws TeacherEntityNotFoundException {
-        return teacherRepository.findTeacherById(id)
-                .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username ", id));
+    public Teacher getTeacher(final String id) throws TeacherEntityNotFoundException {
+        return teacherRepository.findTeacherByFireBaseId(id)
+                .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username "));
     }
 
     public TeacherDTO createTeacher(final Teacher teacher) throws TeacherAlreadyExistsException {
-        if (teacherRepository.findTeacherById(teacher.getId()).isPresent()) {
-            throw new TeacherAlreadyExistsException("Username already taken ", teacher.getNom());
+        if (teacherRepository.getTeachersByFireBaseId(teacher.getFireBaseId()) != null ) {
+            throw new TeacherAlreadyExistsException("Tecaher does not exist ", teacher.getNom());
         } else {
             teacherRepository.save(teacher);
             return teacherMapper.entityToDTO(teacher);
         }
     }
 
-    public void updateTeacherUsername(final Long id, final String newUsername) throws TeacherEntityNotFoundException {
-        Teacher teacher = teacherRepository.findTeacherById(id)
-                .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username ", id));
+    public void updateTeacherUsername(final String id, final String newUsername) throws TeacherEntityNotFoundException {
+        Teacher teacher = teacherRepository.findTeacherByFireBaseId(id)
+                .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username "));
         teacher.setNom(newUsername);
         teacherRepository.save(teacher);
     }
 
-    public void deleteTeacher(final Long id) throws TeacherEntityNotFoundException {
-        Teacher teacher = teacherRepository.findTeacherById(id)
-                .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username ", id));
+    public void deleteTeacher(final String id) throws TeacherEntityNotFoundException {
+        Teacher teacher = teacherRepository.findTeacherByFireBaseId(id)
+                .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username "));
         teacherRepository.delete(teacher);
     }
 
-    public List<MiahootDTO> getMiahoots(final Long id) throws TeacherEntityNotFoundException {
-        Teacher teacher = teacherRepository.findTeacherById(id)
-                .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username ", id));
+    public List<MiahootDTO> getMiahoots(final String id) throws TeacherEntityNotFoundException {
+        Teacher teacher = teacherRepository.findTeacherByFireBaseId(id)
+                .orElseThrow(() -> new TeacherEntityNotFoundException("Aucune entité n'a été trouvée avec ce Username "));
         return teacherMapper.mapToDto(teacher.getCreatedMiahoots());
     }
 

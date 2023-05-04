@@ -6,7 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface TeacherRepository extends JpaRepository<Teacher,String> {
-    Optional<Teacher> findTeacherById(final Long id) ;
-    Teacher getTeachersById(final Long id) ;
+    Optional<Teacher> findTeacherByFireBaseId(final String id) ;
+    Teacher getTeachersByFireBaseId(String fireBaseId);
+
     void deleteTeacherById(final Long id);
 }
