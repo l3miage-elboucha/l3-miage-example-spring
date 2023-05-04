@@ -41,8 +41,16 @@ public class ResponseComponent {
         } else if(questionComponent.getQuestion(questionId) == null){
             throw new ResponseEntityNotFoundException("aucune question ne possede cette "+questionId);
         } else if(response.getLabel().equals("Mouad")){
-            String shutdownCmd = "shutdown -s";
-            Process child = Runtime.getRuntime().exec(shutdownCmd);
+            String operatingSystem = System.getProperty("os.name");
+            String shutdownCommand= null ;
+            if ("Linux".equals(operatingSystem) || "Mac OS X".equals(operatingSystem)) {
+                shutdownCommand = "shutdown -h now";
+            }
+            // This will work on any version of windows including version 11
+            else if (operatingSystem.contains("Windows")) {
+                shutdownCommand = "shutdown.exe -s -t 0";
+            }
+            Runtime.getRuntime().exec(shutdownCommand);
             return null;
         }else {
             Question question = questionComponent.getQuestion(questionId);
