@@ -9,6 +9,7 @@ import lombok.Setter;
 @Setter
 public class TeacherDTO {
      Long id;
+     // id de fireBase
      String fireBaseId ;
      String nom;
 }
