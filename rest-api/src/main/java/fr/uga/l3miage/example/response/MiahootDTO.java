@@ -12,12 +12,11 @@ import java.util.List;
 @Builder
 public class MiahootDTO {
 
-     Long id ;
-     TeacherDTO presentateur ;
-     List<ParticipantDTO> participants ;
-     String nom ;
-     List<QuestionDTO> questions  ;
-     Date miahootBirthday ;
-     StatusDTO status;
+     private Long id ;
+     private TeacherDTO concepteur ;
+     private String nom ;
+     private List<QuestionDTO> questions  ;
+     private Date miahootBirthday ;
+     private StatusDTO status;
 
 }
