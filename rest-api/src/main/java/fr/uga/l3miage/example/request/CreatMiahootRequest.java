@@ -17,8 +17,7 @@ import java.util.List;
 @Schema(description = "Correspond à la requête permettant de créer une entité Miahoot")
 public class CreatMiahootRequest {
     private Long id ;
-    private TeacherDTO presentateur ;
-    private List<ParticipantDTO> participants ;
+    private TeacherDTO concepteur ;
     private String nom ;
     private List<QuestionDTO> questions  ;
     private Date miahootBirthday ;
