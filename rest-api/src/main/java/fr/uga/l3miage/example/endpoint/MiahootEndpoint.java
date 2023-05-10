@@ -65,7 +65,7 @@ public interface MiahootEndpoint {
 
     /* Ici on définit un endpoint en mode <b>PUT</b> pour mettre à jour une entité Miahoot */
 
-    @PutMapping("{id}")
+    @PatchMapping("{id}")
     @Operation(summary = "Update a Miahoot by its id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Miahoot updated",
